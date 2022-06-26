@@ -83,7 +83,7 @@ namespace Air
             {
                 if (CommonData.CurrentAddress!=null)
                 {
-
+                    CommonData.objMod.WriteSingleCoil(ushort.Parse(CommonData.CurrentAddress[((UIButton)sender).Tag.ToString()]), true);
                 }
             }
             
