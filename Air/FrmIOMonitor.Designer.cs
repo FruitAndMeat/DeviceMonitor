@@ -146,6 +146,7 @@
             this.btnStop1.Name = "btnStop1";
             this.btnStop1.Size = new System.Drawing.Size(100, 35);
             this.btnStop1.TabIndex = 5;
+            this.btnStop1.Tag = "1#电机停止";
             this.btnStop1.Text = "停止";
             this.btnStop1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStop1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -160,6 +161,7 @@
             this.btnStart1.Name = "btnStart1";
             this.btnStart1.Size = new System.Drawing.Size(100, 35);
             this.btnStart1.TabIndex = 5;
+            this.btnStart1.Tag = "1#电机启动";
             this.btnStart1.Text = "启动";
             this.btnStart1.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStart1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -227,6 +229,7 @@
             // 
             this.txtCurrentC1.CanEmpty = true;
             this.txtCurrentC1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentC1.Enabled = false;
             this.txtCurrentC1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentC1.Location = new System.Drawing.Point(430, 224);
             this.txtCurrentC1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -238,7 +241,6 @@
             this.txtCurrentC1.TabIndex = 1;
             this.txtCurrentC1.Tag = "1#电机C相电流";
             this.txtCurrentC1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentC1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentC1.Watermark = "";
             this.txtCurrentC1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -246,6 +248,7 @@
             // 
             this.txtVolC1.CanEmpty = true;
             this.txtVolC1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolC1.Enabled = false;
             this.txtVolC1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolC1.Location = new System.Drawing.Point(124, 224);
             this.txtVolC1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -257,7 +260,6 @@
             this.txtVolC1.TabIndex = 1;
             this.txtVolC1.Tag = "1#电机C相电压";
             this.txtVolC1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolC1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolC1.Watermark = "";
             this.txtVolC1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -265,6 +267,7 @@
             // 
             this.txtCurrentB1.CanEmpty = true;
             this.txtCurrentB1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentB1.Enabled = false;
             this.txtCurrentB1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentB1.Location = new System.Drawing.Point(430, 176);
             this.txtCurrentB1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -276,7 +279,6 @@
             this.txtCurrentB1.TabIndex = 1;
             this.txtCurrentB1.Tag = "1#电机B相电流";
             this.txtCurrentB1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentB1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentB1.Watermark = "";
             this.txtCurrentB1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -284,6 +286,7 @@
             // 
             this.txtVolB1.CanEmpty = true;
             this.txtVolB1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolB1.Enabled = false;
             this.txtVolB1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolB1.Location = new System.Drawing.Point(124, 176);
             this.txtVolB1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -295,7 +298,6 @@
             this.txtVolB1.TabIndex = 1;
             this.txtVolB1.Tag = "1#电机B相电压";
             this.txtVolB1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolB1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolB1.Watermark = "";
             this.txtVolB1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -303,6 +305,7 @@
             // 
             this.txtCurrentA1.CanEmpty = true;
             this.txtCurrentA1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentA1.Enabled = false;
             this.txtCurrentA1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentA1.Location = new System.Drawing.Point(430, 128);
             this.txtCurrentA1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -314,7 +317,6 @@
             this.txtCurrentA1.TabIndex = 1;
             this.txtCurrentA1.Tag = "1#电机A相电流";
             this.txtCurrentA1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentA1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentA1.Watermark = "";
             this.txtCurrentA1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -322,6 +324,7 @@
             // 
             this.txtVolA1.CanEmpty = true;
             this.txtVolA1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolA1.Enabled = false;
             this.txtVolA1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolA1.Location = new System.Drawing.Point(124, 128);
             this.txtVolA1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -333,7 +336,6 @@
             this.txtVolA1.TabIndex = 1;
             this.txtVolA1.Tag = "1#电机A相电压";
             this.txtVolA1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolA1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolA1.Watermark = "";
             this.txtVolA1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -341,6 +343,7 @@
             // 
             this.txtFre1.CanEmpty = true;
             this.txtFre1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtFre1.Enabled = false;
             this.txtFre1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtFre1.Location = new System.Drawing.Point(124, 80);
             this.txtFre1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -352,7 +355,6 @@
             this.txtFre1.TabIndex = 1;
             this.txtFre1.Tag = "1#电机输出频率";
             this.txtFre1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtFre1.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtFre1.Watermark = "";
             this.txtFre1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -360,6 +362,7 @@
             // 
             this.txtRunTime1.CanEmpty = true;
             this.txtRunTime1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRunTime1.Enabled = false;
             this.txtRunTime1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtRunTime1.Location = new System.Drawing.Point(122, 32);
             this.txtRunTime1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -507,6 +510,7 @@
             this.btnStop2.Name = "btnStop2";
             this.btnStop2.Size = new System.Drawing.Size(100, 35);
             this.btnStop2.TabIndex = 5;
+            this.btnStop2.Tag = "2#电机停止";
             this.btnStop2.Text = "停止";
             this.btnStop2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStop2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -521,6 +525,7 @@
             this.btnStart2.Name = "btnStart2";
             this.btnStart2.Size = new System.Drawing.Size(100, 35);
             this.btnStart2.TabIndex = 5;
+            this.btnStart2.Tag = "2#电机启动";
             this.btnStart2.Text = "启动";
             this.btnStart2.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStart2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -587,6 +592,7 @@
             // txtCurrentC2
             // 
             this.txtCurrentC2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentC2.Enabled = false;
             this.txtCurrentC2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentC2.Location = new System.Drawing.Point(387, 224);
             this.txtCurrentC2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -597,14 +603,13 @@
             this.txtCurrentC2.Size = new System.Drawing.Size(124, 29);
             this.txtCurrentC2.TabIndex = 1;
             this.txtCurrentC2.Tag = "2#电机C相电流";
-            this.txtCurrentC2.Text = "0.00";
             this.txtCurrentC2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentC2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentC2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtVolC2
             // 
             this.txtVolC2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolC2.Enabled = false;
             this.txtVolC2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolC2.Location = new System.Drawing.Point(124, 224);
             this.txtVolC2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -615,14 +620,13 @@
             this.txtVolC2.Size = new System.Drawing.Size(124, 29);
             this.txtVolC2.TabIndex = 1;
             this.txtVolC2.Tag = "2#电机C相电压";
-            this.txtVolC2.Text = "0.00";
             this.txtVolC2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolC2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolC2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtCurrentB2
             // 
             this.txtCurrentB2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentB2.Enabled = false;
             this.txtCurrentB2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentB2.Location = new System.Drawing.Point(387, 176);
             this.txtCurrentB2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -633,14 +637,13 @@
             this.txtCurrentB2.Size = new System.Drawing.Size(124, 29);
             this.txtCurrentB2.TabIndex = 1;
             this.txtCurrentB2.Tag = "2#电机B相电流";
-            this.txtCurrentB2.Text = "0.00";
             this.txtCurrentB2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentB2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentB2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtVolB2
             // 
             this.txtVolB2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolB2.Enabled = false;
             this.txtVolB2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolB2.Location = new System.Drawing.Point(124, 176);
             this.txtVolB2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -651,14 +654,13 @@
             this.txtVolB2.Size = new System.Drawing.Size(124, 29);
             this.txtVolB2.TabIndex = 1;
             this.txtVolB2.Tag = "2#电机B相电压";
-            this.txtVolB2.Text = "0.00";
             this.txtVolB2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolB2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolB2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtCurrentA2
             // 
             this.txtCurrentA2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCurrentA2.Enabled = false;
             this.txtCurrentA2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtCurrentA2.Location = new System.Drawing.Point(387, 128);
             this.txtCurrentA2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -669,14 +671,13 @@
             this.txtCurrentA2.Size = new System.Drawing.Size(124, 29);
             this.txtCurrentA2.TabIndex = 1;
             this.txtCurrentA2.Tag = "2#电机A相电流";
-            this.txtCurrentA2.Text = "0.00";
             this.txtCurrentA2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCurrentA2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtCurrentA2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtVolA2
             // 
             this.txtVolA2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtVolA2.Enabled = false;
             this.txtVolA2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtVolA2.Location = new System.Drawing.Point(124, 128);
             this.txtVolA2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -687,14 +688,13 @@
             this.txtVolA2.Size = new System.Drawing.Size(124, 29);
             this.txtVolA2.TabIndex = 1;
             this.txtVolA2.Tag = "2#电机A相电压";
-            this.txtVolA2.Text = "0.00";
             this.txtVolA2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtVolA2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtVolA2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtFre2
             // 
             this.txtFre2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtFre2.Enabled = false;
             this.txtFre2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtFre2.Location = new System.Drawing.Point(124, 80);
             this.txtFre2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -705,14 +705,13 @@
             this.txtFre2.Size = new System.Drawing.Size(124, 29);
             this.txtFre2.TabIndex = 1;
             this.txtFre2.Tag = "2#电机输出频率";
-            this.txtFre2.Text = "0.00";
             this.txtFre2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtFre2.Type = Sunny.UI.UITextBox.UIEditType.Double;
             this.txtFre2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // txtRunTime2
             // 
             this.txtRunTime2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRunTime2.Enabled = false;
             this.txtRunTime2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtRunTime2.Location = new System.Drawing.Point(124, 32);
             this.txtRunTime2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -722,7 +721,6 @@
             this.txtRunTime2.ShowText = false;
             this.txtRunTime2.Size = new System.Drawing.Size(124, 29);
             this.txtRunTime2.TabIndex = 1;
-            this.txtRunTime2.Text = "21h12m33s";
             this.txtRunTime2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtRunTime2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
@@ -855,7 +853,7 @@
             this.swh2_4.Tag = "2-4#阀门";
             this.swh2_4.Text = "uiSwitch1";
             this.swh2_4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh2_4.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh2_4_ValueChanged);
+            this.swh2_4.Click += new System.EventHandler(this.swh2_4_Click);
             // 
             // swh1_4
             // 
@@ -868,7 +866,7 @@
             this.swh1_4.Tag = "1-4#阀门";
             this.swh1_4.Text = "uiSwitch1";
             this.swh1_4.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh1_4.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh1_4_ValueChanged);
+            this.swh1_4.Click += new System.EventHandler(this.swh1_4_Click);
             // 
             // uiLabel30
             // 
@@ -903,7 +901,7 @@
             this.swh2_3.Tag = "2-3#阀门";
             this.swh2_3.Text = "uiSwitch1";
             this.swh2_3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh2_3.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh2_3_ValueChanged);
+            this.swh2_3.Click += new System.EventHandler(this.swh2_3_Click);
             // 
             // swh1_3
             // 
@@ -916,7 +914,7 @@
             this.swh1_3.Tag = "1-3#阀门";
             this.swh1_3.Text = "uiSwitch1";
             this.swh1_3.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh1_3.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh1_3_ValueChanged);
+            this.swh1_3.Click += new System.EventHandler(this.swh1_3_Click);
             // 
             // uiLabel29
             // 
@@ -951,7 +949,7 @@
             this.swh2_2.Tag = "2-2#阀门";
             this.swh2_2.Text = "uiSwitch1";
             this.swh2_2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh2_2.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh2_2_ValueChanged);
+            this.swh2_2.Click += new System.EventHandler(this.swh2_2_Click);
             // 
             // swh1_2
             // 
@@ -964,7 +962,7 @@
             this.swh1_2.Tag = "1-2#阀门";
             this.swh1_2.Text = "uiSwitch1";
             this.swh1_2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh1_2.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh1_2_ValueChanged);
+            this.swh1_2.Click += new System.EventHandler(this.swh1_2_Click);
             // 
             // uiLabel28
             // 
@@ -999,7 +997,7 @@
             this.swh2_1.Tag = "2-1#阀门";
             this.swh2_1.Text = "uiSwitch1";
             this.swh2_1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh2_1.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh2_1_ValueChanged);
+            this.swh2_1.Click += new System.EventHandler(this.swh2_1_Click);
             // 
             // uiLabel25
             // 
@@ -1023,7 +1021,7 @@
             this.swh1_1.Tag = "1-1#阀门";
             this.swh1_1.Text = "uiSwitch1";
             this.swh1_1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.swh1_1.ValueChanged += new Sunny.UI.UISwitch.OnValueChanged(this.swh1_1_ValueChanged);
+            this.swh1_1.Click += new System.EventHandler(this.swh1_1_Click);
             // 
             // uiLabel23
             // 

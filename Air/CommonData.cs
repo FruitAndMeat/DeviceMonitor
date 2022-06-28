@@ -8,6 +8,7 @@ using Models;
 
 namespace Air
 {
+    public delegate void UpdateAlarmDelegate();
     public static class CommonData
     {
         /// <summary>全局的操作员信息 </summary>
@@ -66,9 +67,16 @@ namespace Air
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
 
+        public static event UpdateAlarmDelegate update;
+        
 
-
-
+        public static void UpdateAlarm()
+        {
+            if (update!=null)
+            {
+                update.Invoke();
+            }
+        }
 
     }
 }

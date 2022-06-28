@@ -25,6 +25,7 @@ namespace Air
         {
             while (true)
             {
+                
                 if (CommonData.IsWriteing == false)
                 {
                     foreach (StoreArea item in CommonData.storeAreaList)
@@ -34,7 +35,7 @@ namespace Air
                         {
                             case RegisterType.CoilStatus:
                                 //读取
-                                bool[] bools= CommonData.objMod.ReadCoils((ushort)startAddress, (ushort)item.length);
+                                bool[] bools= CommonData.objMod.ReadCoils((ushort)startAddress, (ushort)(item.length));
                                 //解析
                                 AnalyseData_0x(bools);
                                 break;
@@ -43,7 +44,7 @@ namespace Air
                             case RegisterType.HoldingRegister:
                                 ushort[] datas= CommonData.objMod.ReadHoldingRegisters((ushort)startAddress, (ushort)item.length);
                                 //解析
-                                if (datas.Length==item.length*2)
+                                if (datas.Length == item.length)
                                 {
                                     AnalyseData_4x(datas);
                                 }
@@ -53,6 +54,7 @@ namespace Air
                         }
                     }
                 }
+                Task.Delay(500);
             }
         }
 
@@ -82,10 +84,10 @@ namespace Air
                 {
                     ByteList.AddRange(BitConverter.GetBytes(datas[i]));
                 }
-                var s = ByteList.ToArray();
+                byte[] s = ByteList.ToArray();
                 for (int i = 0; i < ByteList.Count/4; i++)
                 {
-                    FloatList.Add(BitConverter.ToSingle(s, 4 * i));
+                    FloatList.Add(BitConverter.ToSingle(new byte[] { s[4*i+2],s[4*i+3],s[4*i],s[4*i+1]}, 0));
                 }
                 for (int i = 0; i < List_4x.Count; i++)
                 {
@@ -104,7 +106,7 @@ namespace Air
                         case PLCDataType.Uint:
                             break;
                         case PLCDataType.Real:
-                            CommonData.CurrentValue[List_4x[i].VarName] = FloatList[i].ToString("f1");
+                            CommonData.CurrentValue[List_4x[i].VarName] = FloatList[i].ToString("f2");
                             break;
                         case PLCDataType.LReal:
                             break;

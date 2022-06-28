@@ -16,11 +16,16 @@ namespace DAL
         {
             this.device = device;
             this.slaveAddress = Convert.ToByte(device.DeviceID);
-            tcpClient = new TcpClient(new IPEndPoint(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort));
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
+            tcpClient = new TcpClient();
+            tcpClient.Connect(ip);
+            //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //socket.Connect(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
             master = new ModbusFactory().CreateMaster(tcpClient);
         }
         private Device device;
         byte slaveAddress = 1;
+        private Socket socket;
         private TcpClient tcpClient;
         public IModbusMaster master;
 
@@ -36,7 +41,9 @@ namespace DAL
             try
             {
                 if (master != null)
-                    return master.ReadCoils(slaveAddress, startAddress, length);
+                {   var s=master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress -1), length);
+                    return s;
+                }
                 else
                     return null;
             }
@@ -56,7 +63,10 @@ namespace DAL
             try
             {
                 if (master != null)
-                    return master.ReadHoldingRegisters(slaveAddress, startAddress, length);
+                {
+                    var s= master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), length);
+                    return s;
+                }
                 else
                     return null;
             }
@@ -75,9 +85,10 @@ namespace DAL
         {
             try
             {
+                
                 if (master != null)
                 {
-                    master.WriteMultipleCoils(slaveAddress, startAddress, datas);
+                    master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
                     return true;
                 }
                 else
@@ -99,7 +110,7 @@ namespace DAL
             {
                 if (master != null)
                 {
-                    master.WriteMultipleRegisters(slaveAddress, startAddress, datas);
+                    master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
                     return true;
                 }
                 else
@@ -122,7 +133,7 @@ namespace DAL
             {
                 if (master != null)
                 {
-                    master.WriteSingleCoil(slaveAddress, coilAddress, value);
+                    master.WriteSingleCoil(slaveAddress, Convert.ToUInt16(coilAddress -1), value);
                     return true;
                 }
                 else
@@ -145,7 +156,7 @@ namespace DAL
             {
                 if (master != null)
                 {
-                    master.WriteSingleRegister(slaveAddress, registerAddress, value);
+                    master.WriteSingleRegister(slaveAddress, Convert.ToUInt16(registerAddress-1), value);
                     return true;
                 }
                 else

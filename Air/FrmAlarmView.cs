@@ -16,6 +16,7 @@ namespace Air
         public FrmAlarmView()
         {
             InitializeComponent();
+
         }
     }
 }

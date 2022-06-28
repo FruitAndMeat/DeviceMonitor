@@ -20,6 +20,42 @@ namespace Air
         private List<UITextBox> txtBoxList = new List<UITextBox>();
         private List<UISwitch> switchList = new List<UISwitch>();
 
+        void SetBoolValue(object sender,bool value)
+        {
+            CommonData.IsWriteing = true;
+            try
+            {
+                if (sender is UIButton)
+                {
+                    if (((UIButton)sender).Tag != null)
+                    {
+                        if (CommonData.CurrentAddress != null)
+                        {
+                            CommonData.objMod.WriteSingleCoil(ushort.Parse(CommonData.CurrentAddress[((UIButton)sender).Tag.ToString()]), value);
+                        }
+                    }
+                }
+                else if (sender is UISwitch)
+                {
+                    if (((UISwitch)sender).Tag != null)
+                    {
+                        if (CommonData.CurrentAddress != null)
+                        {
+                            CommonData.objMod.WriteSingleCoil(ushort.Parse(CommonData.CurrentAddress[((UISwitch)sender).Tag.ToString()]), value);
+                        }
+                    }
+                }
+
+                UIMessageBox.ShowSuccess("修改成功");
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.ShowError("修改变量出错" + ex.Message);
+            }
+            finally { CommonData.IsWriteing = false; }
+        }
+
+        //定时刷新界面
         private void TimerRefresh_Tick(object sender, EventArgs e)
         {
             foreach (UITextBox item in txtBoxList)
@@ -28,7 +64,7 @@ namespace Air
                 {
                     if (CommonData.CurrentValue!=null&&CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
                     {
-                        item.Text = CommonData.CurrentValue[item.Tag.ToString()];
+                        item.Invoke(new Action(() => item.Text = CommonData.CurrentValue[item.Tag.ToString()]));
                     }
                 }
             }
@@ -38,7 +74,7 @@ namespace Air
                 {
                     if (CommonData.CurrentValue != null && CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
                     {
-                        item.Active = CommonData.CurrentValue[item.Tag.ToString()]=="True"?true:false;
+                      item.Invoke(new Action(()=>item.Active = CommonData.CurrentValue[item.Tag.ToString()]=="True"?true:false));
                     }
                 }
             }
@@ -46,6 +82,7 @@ namespace Air
 
         }
 
+        //界面加载时，将控件添加到List集合中
         private void FrmIOMonitor_Load(object sender, EventArgs e)
         {
             //将控件在窗体加载的时候就添加到集合中
@@ -70,73 +107,67 @@ namespace Air
                     switchList.Add((UISwitch)item);
                 }
             }
+            TimerRefresh_Tick(null, null);
         }
 
         private void btnStart1_Click(object sender, EventArgs e)
         {
-            
+            SetBoolValue(sender, true);
         }
 
         private void btnStop1_Click(object sender, EventArgs e)
         {
-            if (((UIButton)sender).Tag!=null)
-            {
-                if (CommonData.CurrentAddress!=null)
-                {
-                    CommonData.objMod.WriteSingleCoil(ushort.Parse(CommonData.CurrentAddress[((UIButton)sender).Tag.ToString()]), true);
-                }
-            }
-            
+            SetBoolValue(sender, true);
         }
 
         private void btnStart2_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, true);
         }
 
         private void btnStop2_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, true);
+        }
+        
+        private void swh1_1_Click(object sender, EventArgs e)
+        {
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh1_1_ValueChanged(object sender, bool value)
+        private void swh1_2_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh1_2_ValueChanged(object sender, bool value)
+        private void swh1_3_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh1_3_ValueChanged(object sender, bool value)
+        private void swh1_4_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh1_4_ValueChanged(object sender, bool value)
+        private void swh2_1_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh2_1_ValueChanged(object sender, bool value)
+        private void swh2_2_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh2_2_ValueChanged(object sender, bool value)
+        private void swh2_3_Click(object sender, EventArgs e)
         {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
 
-        private void swh2_3_ValueChanged(object sender, bool value)
+        private void swh2_4_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void swh2_4_ValueChanged(object sender, bool value)
-        {
-
+            SetBoolValue(sender, ((UISwitch)sender).Active);
         }
     }
 }
