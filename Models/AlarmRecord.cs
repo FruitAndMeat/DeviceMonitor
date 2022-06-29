@@ -38,5 +38,18 @@ namespace Models
         /// <summary>报警注释与说明</summary>
         public string alarmNote { get; set; }
 
+
+        public AlarmRecord(string alarmDate,string varName,AlarmState alarmState,AlarmType alarmType,float actualValue,float alarmValue,int priority,string alarmNote)
+        {
+            this.alarmDate = Convert.ToDateTime(alarmDate);
+            this.varName = varName;
+            this.alarmState = alarmState;
+            this.alarmType = alarmType;
+            this.actualValue = actualValue;
+            this.alarmValue = alarmValue;
+            this.priority = priority;
+            this.alarmNote = alarmNote;
+        }
+       
     }
 }

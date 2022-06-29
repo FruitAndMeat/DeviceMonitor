@@ -25,7 +25,7 @@ namespace DAL
         }
         private Device device;
         byte slaveAddress = 1;
-        private Socket socket;
+        //private Socket socket;
         private TcpClient tcpClient;
         public IModbusMaster master;
 

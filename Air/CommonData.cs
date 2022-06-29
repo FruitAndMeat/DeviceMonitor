@@ -9,6 +9,7 @@ using Models;
 namespace Air
 {
     public delegate void UpdateAlarmDelegate();
+
     public static class CommonData
     {
         /// <summary>全局的操作员信息 </summary>
@@ -62,13 +63,22 @@ namespace Air
         /// <summary> 存储区域集合</summary>
         public static List<StoreArea> storeAreaList = new List<StoreArea>();
 
+        /// <summary>
+        /// 报警缓存区列表
+        /// </summary>
+        public static List<AlarmRecord> alarmRecordList = new List<AlarmRecord>();
+        /*优化*/
+        /// <summary>
+        /// 报警缓存区列表的最大值
+        /// </summary>
+        public static readonly int alarmRecordMax = 100;
+
         /// <summary>线程专用数据写入的标志位</summary>
         public static bool IsWriteing=false;
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
 
         public static event UpdateAlarmDelegate update;
-        
 
         public static void UpdateAlarm()
         {

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminServices.cs" />
+    <Compile Include="AlarmRecordServices.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\INIHelper.cs" />
     <Compile Include="IniFile.cs" />
