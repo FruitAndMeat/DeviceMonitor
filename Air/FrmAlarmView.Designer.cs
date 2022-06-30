@@ -30,9 +30,10 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.uiSplitContainer1 = new Sunny.UI.UISplitContainer();
             this.DtpEnd = new Sunny.UI.UIDatetimePicker();
             this.DtpStart = new Sunny.UI.UIDatetimePicker();
@@ -42,7 +43,6 @@
             this.cmbAlarmType = new Sunny.UI.UIComboBox();
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.dgvAlarm = new Sunny.UI.UIDataGridView();
-            this.alarmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alarmDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.varName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alarmState = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,7 +133,7 @@
             // 
             this.BtnQuery.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnQuery.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnQuery.Location = new System.Drawing.Point(1067, 19);
+            this.BtnQuery.Location = new System.Drawing.Point(1067, 16);
             this.BtnQuery.MinimumSize = new System.Drawing.Size(1, 1);
             this.BtnQuery.Name = "BtnQuery";
             this.BtnQuery.Size = new System.Drawing.Size(100, 35);
@@ -146,7 +146,7 @@
             // uiLabel3
             // 
             this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel3.Location = new System.Drawing.Point(699, 19);
+            this.uiLabel3.Location = new System.Drawing.Point(699, 22);
             this.uiLabel3.Name = "uiLabel3";
             this.uiLabel3.Size = new System.Drawing.Size(100, 23);
             this.uiLabel3.TabIndex = 2;
@@ -211,10 +211,9 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAlarm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAlarm.ColumnHeadersHeight = 32;
+            this.dgvAlarm.ColumnHeadersHeight = 30;
             this.dgvAlarm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAlarm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.alarmID,
             this.alarmDate,
             this.varName,
             this.alarmState,
@@ -223,14 +222,14 @@
             this.actualValue,
             this.alarmValue,
             this.alarmNote});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlarm.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAlarm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlarm.EnableHeadersVisualStyles = false;
             this.dgvAlarm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -238,40 +237,36 @@
             this.dgvAlarm.Location = new System.Drawing.Point(0, 0);
             this.dgvAlarm.Name = "dgvAlarm";
             this.dgvAlarm.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlarm.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvAlarm.RowHeadersVisible = false;
-            this.dgvAlarm.RowHeight = 0;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.dgvAlarm.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvAlarm.RowTemplate.Height = 23;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlarm.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAlarm.RowHeadersVisible = false;
+            this.dgvAlarm.RowHeight = 0;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(236)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.dgvAlarm.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvAlarm.RowTemplate.Height = 30;
             this.dgvAlarm.SelectedIndex = -1;
+            this.dgvAlarm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlarm.ShowGridLine = false;
             this.dgvAlarm.ShowRect = false;
             this.dgvAlarm.Size = new System.Drawing.Size(1278, 454);
             this.dgvAlarm.TabIndex = 0;
             this.dgvAlarm.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // alarmID
-            // 
-            this.alarmID.DataPropertyName = "alarmID";
-            this.alarmID.HeaderText = "报警ID";
-            this.alarmID.Name = "alarmID";
-            this.alarmID.ReadOnly = true;
-            // 
             // alarmDate
             // 
             this.alarmDate.DataPropertyName = "alarmDate";
+            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm:ss";
+            this.alarmDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.alarmDate.HeaderText = "日期时间";
             this.alarmDate.Name = "alarmDate";
             this.alarmDate.ReadOnly = true;
@@ -339,6 +334,7 @@
             this.ShowTitle = false;
             this.Text = "FrmAlarmView";
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAlarmView_FormClosed);
             this.Load += new System.EventHandler(this.FrmAlarmView_Load);
             this.uiSplitContainer1.Panel1.ResumeLayout(false);
             this.uiSplitContainer1.Panel2.ResumeLayout(false);
@@ -360,7 +356,6 @@
         private Sunny.UI.UIDataGridView dgvAlarm;
         private Sunny.UI.UIDatetimePicker DtpEnd;
         private Sunny.UI.UIDatetimePicker DtpStart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alarmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn alarmDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn varName;
         private System.Windows.Forms.DataGridViewTextBoxColumn alarmState;

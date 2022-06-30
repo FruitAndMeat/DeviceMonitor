@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
 using Models;
+using DAL;
 
 namespace Air
 {
@@ -17,8 +18,10 @@ namespace Air
         public FrmAlarmView()
         {
             InitializeComponent();
-            CommonData.update += CommonData_update;
+            
         }
+
+        private AlarmRecordServices objAlarmRS = new AlarmRecordServices();
 
         void UpdateDGVAlarm()
         {
@@ -34,27 +37,91 @@ namespace Air
             {
                 this.dgvAlarm.DataSource = CommonData.alarmRecordList;
             }
+            ModifyBackColor();
+        }
+
+        void ModifyBackColor()
+        {
+            if (this.dgvAlarm.Rows.Count>0)
+            {
+                for (int i = 0; i < this.dgvAlarm.Rows.Count; i++)
+                {
+                    if (this.dgvAlarm.Rows[i].Cells[2].Value.ToString()== "Incoming")
+                    {
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255, 128, 128);
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.SelectionBackColor = Color.FromArgb(255, 128, 128);
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    }
+                    else if (this.dgvAlarm.Rows[i].Cells[2].Value.ToString() == "Outgoing")
+                    {
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.BackColor = Color.CadetBlue;
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.SelectionBackColor = Color.CadetBlue;
+                        this.dgvAlarm.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Black;
+                    }
+                }
+            }
         }
 
         private void CommonData_update()
         {
-            //this.dgvAlarm.Invoke(new Action(UpdateDGVAlarm));
+           this.dgvAlarm.Invoke(new Action(UpdateDGVAlarm));
         }
 
         private void FrmAlarmView_Load(object sender, EventArgs e)
         {
             this.cmbAlarmType.Items.AddRange(new string[] { "实时报警", "历史报警" });
             this.cmbAlarmType.SelectedIndex = 0;
+            TimeSpan ts = new TimeSpan(7, 0, 0, 0, 0);
+            this.DtpStart.Value = DateTime.Now.Subtract(ts);
+            this.DtpEnd.Value = DateTime.Now;
+            CommonData.update += CommonData_update;
+            UpdateDGVAlarm();
         }
+
 
         private void cmbAlarmType_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cmbAlarmType.SelectedIndex==0)
+            {
+                CommonData.update += CommonData_update;
+                UpdateDGVAlarm();
+            }
         }
 
         private void BtnQuery_Click(object sender, EventArgs e)
         {
-            UpdateDGVAlarm();
+            CommonData.update -= CommonData_update;
+            DateTime startTime = this.DtpStart.Value;
+            DateTime endTime = this.DtpEnd.Value;
+            if (endTime<startTime)
+            {
+                UIMessageBox.ShowWarning("开始时间与结束时间不符合，请检查修改后重试。");
+                return;
+            }
+            if ((endTime-startTime).TotalDays>7.0)
+            {
+                UIMessageBox.ShowWarning("查询范围太大，请缩小查询范围，最大间隔为7天。");
+                return;
+            }
+
+            this.cmbAlarmType.SelectedIndex = 1;
+            try
+            {
+              this.dgvAlarm.DataSource= objAlarmRS.QueryAlarmRecord(startTime, endTime);
+                ModifyBackColor();
+            }
+            catch(Exception ex)
+            {
+                UIMessageBox.ShowError("历史报警查询失败：" + ex.Message);
+            }
+            
+        }
+
+        private void FrmAlarmView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CommonData.update -= CommonData_update;
         }
     }
 }

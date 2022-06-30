@@ -58,27 +58,30 @@ namespace Air
         //定时刷新界面
         private void TimerRefresh_Tick(object sender, EventArgs e)
         {
-            foreach (UITextBox item in txtBoxList)
+            try
             {
-                if (item.Tag!=null)
+                foreach (UITextBox item in txtBoxList)
                 {
-                    if (CommonData.CurrentValue!=null&&CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
+                    if (item.Tag != null)
                     {
-                        item.Invoke(new Action(() => item.Text = CommonData.CurrentValue[item.Tag.ToString()]));
+                        if (CommonData.CurrentValue != null && CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
+                        {
+                            item.Invoke(new Action(() => item.Text = CommonData.CurrentValue[item.Tag.ToString()]));
+                        }
+                    }
+                }
+                foreach (UISwitch item in switchList)
+                {
+                    if (item.Tag != null)
+                    {
+                        if (CommonData.CurrentValue != null && CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
+                        {
+                            item.Invoke(new Action(() => item.Active = CommonData.CurrentValue[item.Tag.ToString()] == "True" ? true : false));
+                        }
                     }
                 }
             }
-            foreach (UISwitch item in switchList)
-            {
-                if (item.Tag != null)
-                {
-                    if (CommonData.CurrentValue != null && CommonData.CurrentValue.ContainsKey(item.Tag.ToString()))
-                    {
-                      item.Invoke(new Action(()=>item.Active = CommonData.CurrentValue[item.Tag.ToString()]=="True"?true:false));
-                    }
-                }
-            }
-
+            catch { }
 
         }
 

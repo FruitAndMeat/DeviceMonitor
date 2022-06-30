@@ -12,7 +12,7 @@ namespace Models
     public class AlarmRecord
     {
         /// <summary>报警记录ID</summary>
-        public int alarmID { get; set; }
+        //public int alarmID { get; set; }
 
         /// <summary>报警时间 </summary>
         public DateTime alarmDate { get; set; }
