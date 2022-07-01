@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,7 @@
     <Compile Include="HardwareConfig\VariableConfig\FrmNewVariable.Designer.cs">
       <DependentUpon>FrmNewVariable.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertData.cs" />
     <Compile Include="PublicTools\DataValidate.cs" />
     <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>

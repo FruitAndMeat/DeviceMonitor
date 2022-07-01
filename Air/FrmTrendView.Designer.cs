@@ -28,22 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTrendView));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiSplitContainer1 = new Sunny.UI.UISplitContainer();
-            this.cmbTrendType = new Sunny.UI.UIComboBox();
-            this.cmbTrendArea = new Sunny.UI.UIComboBox();
-            this.uiCheckBoxGroup1 = new Sunny.UI.UICheckBoxGroup();
-            this.btnConfirm = new Sunny.UI.UIButton();
             this.btnCancel = new Sunny.UI.UIButton();
+            this.btnConfirm = new Sunny.UI.UIButton();
+            this.GrpVarSelect = new Sunny.UI.UICheckBoxGroup();
+            this.cmbTrendArea = new Sunny.UI.UIComboBox();
+            this.cmbTrendType = new Sunny.UI.UIComboBox();
             this.uiSplitContainer2 = new Sunny.UI.UISplitContainer();
-            this.TrendChart = new Sunny.UI.UILineChart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.txtCount = new Sunny.UI.UIIntegerUpDown();
+            this.uiLabel1 = new Sunny.UI.UILabel();
             this.DtpEnd = new Sunny.UI.UIDatetimePicker();
             this.DtpStart = new Sunny.UI.UIDatetimePicker();
-            this.BtnQuery = new Sunny.UI.UIButton();
+            this.BtnStop = new Sunny.UI.UIButton();
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
-            this.uiLabel1 = new Sunny.UI.UILabel();
-            this.txtCount = new Sunny.UI.UIIntegerUpDown();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer1)).BeginInit();
             this.uiSplitContainer1.Panel1.SuspendLayout();
             this.uiSplitContainer1.Panel2.SuspendLayout();
@@ -52,6 +57,7 @@
             this.uiSplitContainer2.Panel1.SuspendLayout();
             this.uiSplitContainer2.Panel2.SuspendLayout();
             this.uiSplitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // uiSplitContainer1
@@ -68,7 +74,7 @@
             // 
             this.uiSplitContainer1.Panel1.Controls.Add(this.btnCancel);
             this.uiSplitContainer1.Panel1.Controls.Add(this.btnConfirm);
-            this.uiSplitContainer1.Panel1.Controls.Add(this.uiCheckBoxGroup1);
+            this.uiSplitContainer1.Panel1.Controls.Add(this.GrpVarSelect);
             this.uiSplitContainer1.Panel1.Controls.Add(this.cmbTrendArea);
             this.uiSplitContainer1.Panel1.Controls.Add(this.cmbTrendType);
             // 
@@ -81,24 +87,63 @@
             this.uiSplitContainer1.TabIndex = 0;
             this.uiSplitContainer1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // cmbTrendType
+            // btnCancel
             // 
-            this.cmbTrendType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTrendType.DataSource = null;
-            this.cmbTrendType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cmbTrendType.FillColor = System.Drawing.Color.White;
-            this.cmbTrendType.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmbTrendType.Location = new System.Drawing.Point(13, 13);
-            this.cmbTrendType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbTrendType.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cmbTrendType.Name = "cmbTrendType";
-            this.cmbTrendType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmbTrendType.Size = new System.Drawing.Size(166, 29);
-            this.cmbTrendType.TabIndex = 0;
-            this.cmbTrendType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmbTrendType.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.cmbTrendType.SelectedIndexChanged += new System.EventHandler(this.cmbTrendType_SelectedIndexChanged);
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCancel.Location = new System.Drawing.Point(10, 480);
+            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(169, 35);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "取消";
+            this.btnCancel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCancel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfirm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnConfirm.Location = new System.Drawing.Point(11, 416);
+            this.btnConfirm.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(169, 35);
+            this.btnConfirm.TabIndex = 2;
+            this.btnConfirm.Text = "确认";
+            this.btnConfirm.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnConfirm.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // GrpVarSelect
+            // 
+            this.GrpVarSelect.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GrpVarSelect.ColumnInterval = 10;
+            this.GrpVarSelect.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.GrpVarSelect.Items.AddRange(new object[] {
+            "输出频率",
+            "A相电流",
+            "B相电流",
+            "C相电流",
+            "A相电压",
+            "B相电压",
+            "C相电压"});
+            this.GrpVarSelect.Location = new System.Drawing.Point(13, 99);
+            this.GrpVarSelect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GrpVarSelect.MinimumSize = new System.Drawing.Size(1, 1);
+            this.GrpVarSelect.Name = "GrpVarSelect";
+            this.GrpVarSelect.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.GrpVarSelect.SelectedIndexes = ((System.Collections.Generic.List<int>)(resources.GetObject("GrpVarSelect.SelectedIndexes")));
+            this.GrpVarSelect.Size = new System.Drawing.Size(166, 287);
+            this.GrpVarSelect.TabIndex = 1;
+            this.GrpVarSelect.Text = "变量选择";
+            this.GrpVarSelect.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.GrpVarSelect.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // cmbTrendArea
             // 
@@ -119,63 +164,24 @@
             this.cmbTrendArea.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.cmbTrendArea.SelectedIndexChanged += new System.EventHandler(this.cmbTrendArea_SelectedIndexChanged);
             // 
-            // uiCheckBoxGroup1
+            // cmbTrendType
             // 
-            this.uiCheckBoxGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbTrendType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiCheckBoxGroup1.ColumnInterval = 10;
-            this.uiCheckBoxGroup1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiCheckBoxGroup1.Items.AddRange(new object[] {
-            "输出频率",
-            "A相电流",
-            "B相电流",
-            "C相电流",
-            "A相电压",
-            "B相电压",
-            "C相电压"});
-            this.uiCheckBoxGroup1.Location = new System.Drawing.Point(13, 99);
-            this.uiCheckBoxGroup1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiCheckBoxGroup1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiCheckBoxGroup1.Name = "uiCheckBoxGroup1";
-            this.uiCheckBoxGroup1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.uiCheckBoxGroup1.SelectedIndexes = ((System.Collections.Generic.List<int>)(resources.GetObject("uiCheckBoxGroup1.SelectedIndexes")));
-            this.uiCheckBoxGroup1.Size = new System.Drawing.Size(166, 287);
-            this.uiCheckBoxGroup1.TabIndex = 1;
-            this.uiCheckBoxGroup1.Text = "变量选择";
-            this.uiCheckBoxGroup1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiCheckBoxGroup1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfirm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConfirm.Location = new System.Drawing.Point(11, 416);
-            this.btnConfirm.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(169, 35);
-            this.btnConfirm.TabIndex = 2;
-            this.btnConfirm.Text = "确认";
-            this.btnConfirm.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConfirm.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.Location = new System.Drawing.Point(10, 480);
-            this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(169, 35);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "取消";
-            this.btnCancel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.cmbTrendType.DataSource = null;
+            this.cmbTrendType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            this.cmbTrendType.FillColor = System.Drawing.Color.White;
+            this.cmbTrendType.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cmbTrendType.Location = new System.Drawing.Point(13, 13);
+            this.cmbTrendType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbTrendType.MinimumSize = new System.Drawing.Size(63, 0);
+            this.cmbTrendType.Name = "cmbTrendType";
+            this.cmbTrendType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
+            this.cmbTrendType.Size = new System.Drawing.Size(166, 29);
+            this.cmbTrendType.TabIndex = 0;
+            this.cmbTrendType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmbTrendType.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.cmbTrendType.SelectedIndexChanged += new System.EventHandler(this.cmbTrendType_SelectedIndexChanged);
             // 
             // uiSplitContainer2
             // 
@@ -190,7 +196,7 @@
             // 
             // uiSplitContainer2.Panel1
             // 
-            this.uiSplitContainer2.Panel1.Controls.Add(this.TrendChart);
+            this.uiSplitContainer2.Panel1.Controls.Add(this.chart1);
             // 
             // uiSplitContainer2.Panel2
             // 
@@ -198,7 +204,7 @@
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel1);
             this.uiSplitContainer2.Panel2.Controls.Add(this.DtpEnd);
             this.uiSplitContainer2.Panel2.Controls.Add(this.DtpStart);
-            this.uiSplitContainer2.Panel2.Controls.Add(this.BtnQuery);
+            this.uiSplitContainer2.Panel2.Controls.Add(this.BtnStop);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel3);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel2);
             this.uiSplitContainer2.Size = new System.Drawing.Size(1082, 531);
@@ -207,19 +213,71 @@
             this.uiSplitContainer2.TabIndex = 0;
             this.uiSplitContainer2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // TrendChart
+            // chart1
             // 
-            this.TrendChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TrendChart.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TrendChart.LegendFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TrendChart.Location = new System.Drawing.Point(0, 0);
-            this.TrendChart.MinimumSize = new System.Drawing.Size(1, 1);
-            this.TrendChart.Name = "TrendChart";
-            this.TrendChart.Size = new System.Drawing.Size(1082, 468);
-            this.TrendChart.SubFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TrendChart.TabIndex = 0;
-            this.TrendChart.Text = "趋势曲线";
-            this.TrendChart.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea1.AxisX.LabelStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            chartArea1.AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea1.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea1.AxisX.Title = "时间";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea1.AxisX2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea1.AxisY.Title = "电压值";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea1.AxisY2.Title = "电流与输出频率值";
+            chartArea1.AxisY2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1082, 468);
+            this.chart1.TabIndex = 0;
+            // 
+            // txtCount
+            // 
+            this.txtCount.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtCount.HasMaximum = true;
+            this.txtCount.HasMinimum = true;
+            this.txtCount.Location = new System.Drawing.Point(749, 17);
+            this.txtCount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCount.Maximum = 600;
+            this.txtCount.MaximumEnabled = true;
+            this.txtCount.Minimum = 0;
+            this.txtCount.MinimumEnabled = true;
+            this.txtCount.MinimumSize = new System.Drawing.Size(100, 0);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.ShowText = false;
+            this.txtCount.Size = new System.Drawing.Size(116, 29);
+            this.txtCount.TabIndex = 12;
+            this.txtCount.Text = "uiIntegerUpDown1";
+            this.txtCount.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtCount.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
+            // uiLabel1
+            // 
+            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel1.Location = new System.Drawing.Point(653, 20);
+            this.uiLabel1.Name = "uiLabel1";
+            this.uiLabel1.Size = new System.Drawing.Size(100, 23);
+            this.uiLabel1.TabIndex = 11;
+            this.uiLabel1.Text = "显示数目：";
+            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // DtpEnd
             // 
@@ -261,19 +319,19 @@
             this.DtpStart.Value = new System.DateTime(2022, 6, 28, 16, 2, 34, 427);
             this.DtpStart.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // BtnQuery
+            // BtnStop
             // 
-            this.BtnQuery.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnQuery.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnQuery.Location = new System.Drawing.Point(924, 14);
-            this.BtnQuery.MinimumSize = new System.Drawing.Size(1, 1);
-            this.BtnQuery.Name = "BtnQuery";
-            this.BtnQuery.Size = new System.Drawing.Size(115, 35);
-            this.BtnQuery.TabIndex = 8;
-            this.BtnQuery.Text = "查询";
-            this.BtnQuery.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnQuery.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.BtnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
+            this.BtnStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnStop.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnStop.Location = new System.Drawing.Point(932, 11);
+            this.BtnStop.MinimumSize = new System.Drawing.Size(1, 1);
+            this.BtnStop.Name = "BtnStop";
+            this.BtnStop.Size = new System.Drawing.Size(115, 35);
+            this.BtnStop.TabIndex = 8;
+            this.BtnStop.Text = "暂停更新";
+            this.BtnStop.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnStop.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.BtnStop.Click += new System.EventHandler(this.BtnQuery_Click);
             // 
             // uiLabel3
             // 
@@ -297,30 +355,10 @@
             this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // uiLabel1
+            // timer1
             // 
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel1.Location = new System.Drawing.Point(653, 20);
-            this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(100, 23);
-            this.uiLabel1.TabIndex = 11;
-            this.uiLabel1.Text = "显示数目：";
-            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // txtCount
-            // 
-            this.txtCount.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCount.Location = new System.Drawing.Point(749, 17);
-            this.txtCount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCount.MinimumSize = new System.Drawing.Size(100, 0);
-            this.txtCount.Name = "txtCount";
-            this.txtCount.ShowText = false;
-            this.txtCount.Size = new System.Drawing.Size(116, 29);
-            this.txtCount.TabIndex = 12;
-            this.txtCount.Text = "uiIntegerUpDown1";
-            this.txtCount.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.txtCount.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmTrendView
             // 
@@ -342,6 +380,7 @@
             this.uiSplitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer2)).EndInit();
             this.uiSplitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -351,17 +390,18 @@
         private Sunny.UI.UISplitContainer uiSplitContainer1;
         private Sunny.UI.UIComboBox cmbTrendArea;
         private Sunny.UI.UIComboBox cmbTrendType;
-        private Sunny.UI.UICheckBoxGroup uiCheckBoxGroup1;
+        private Sunny.UI.UICheckBoxGroup GrpVarSelect;
         private Sunny.UI.UIButton btnCancel;
         private Sunny.UI.UIButton btnConfirm;
         private Sunny.UI.UISplitContainer uiSplitContainer2;
-        private Sunny.UI.UILineChart TrendChart;
         private Sunny.UI.UIDatetimePicker DtpEnd;
         private Sunny.UI.UIDatetimePicker DtpStart;
-        private Sunny.UI.UIButton BtnQuery;
+        private Sunny.UI.UIButton BtnStop;
         private Sunny.UI.UILabel uiLabel3;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UIIntegerUpDown txtCount;
         private Sunny.UI.UILabel uiLabel1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

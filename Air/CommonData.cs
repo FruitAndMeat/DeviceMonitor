@@ -42,31 +42,25 @@ namespace Air
 
         /// <summary>变量名称与变量地址的字典集合 </summary>
         public static Dictionary<string, string> CurrentAddress = new Dictionary<string, string>();
-        /// <summary>
-        /// 归档变量信息集合
-        /// </summary>
+
+        /// <summary>归档变量信息集合</summary>
         public static List<Variables> fileVarList = new List<Variables>();
-        /// <summary>
-        /// 数据报表信息集合
-        /// </summary>
+
+        /// <summary>数据报表信息集合 </summary>
         public static List<Variables> reportVarList = new List<Variables>();
 
-        /// <summary>
-        /// 变量信息集合
-        /// </summary>
+        /// <summary>变量信息集合</summary>
         public static List<Variables> variableList = new List<Variables>();
-        /// <summary>
-        /// 报警信息集合
-        /// </summary>
+
+        /// <summary>报警信息集合</summary>
         public static List<VarAlarm> varAlarmList = new List<VarAlarm>();
 
         /// <summary> 存储区域集合</summary>
         public static List<StoreArea> storeAreaList = new List<StoreArea>();
 
-        /// <summary>
-        /// 报警缓存区列表
-        /// </summary>
+        /// <summary>报警缓存区列表</summary>
         public static List<AlarmRecord> alarmRecordList = new List<AlarmRecord>();
+
         /*优化*/
         /// <summary>
         /// 报警缓存区列表的最大值
