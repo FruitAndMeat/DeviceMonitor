@@ -24,6 +24,39 @@ namespace Air
 
         //private UILineOption option; 
 
+        #region 自定义私有方法
+        //给chart1添加选中的变量的曲线series
+        private void AddSeries()
+        {
+            this.chart1.Series.Clear();
+            foreach (var item in GrpVarSelect.SelectedItems)
+            {
+                string name = this.cmbTrendArea.Text + item.ToString();
+                Series series = new Series(name);
+                series.ChartType = SeriesChartType.Spline;
+                series.BorderWidth = 3;
+                series.XValueType = ChartValueType.DateTime;
+                //如果是电流或者频率的点位，就添加到Y2轴
+                if (item.ToString().Contains("电流") || item.ToString().Contains("频率"))
+                {
+                    series.YAxisType = AxisType.Secondary;
+                }
+                else
+                {
+                    series.YAxisType = AxisType.Primary;
+                }
+                this.chart1.Series.Add(series);
+            }
+        }
+
+        private async void QueryHistoryTrend(DateTime startTime,DateTime endTime)
+        {
+
+
+            await ;
+        }
+        #endregion
+
         private void FrmTrendView_Load(object sender, EventArgs e)
         {
             #region 控件值初始化
@@ -57,8 +90,8 @@ namespace Air
             //TrendChart.SetOption(option);
             #endregion
         }
-
-        private void btnConfirm_Click(object sender, EventArgs e)
+        //实时趋势更新
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             #region UILineChart添加曲线（废弃）
             //option.Series.Clear();
@@ -77,37 +110,32 @@ namespace Air
             //}
             #endregion
 
-            //给chart1添加选中的变量的曲线series
-            this.chart1.Series.Clear();
-            foreach (var item in GrpVarSelect.SelectedItems)
+            AddSeries();
+            this.cmbTrendType.SelectedIndex = 0;
+            if (btnUpdate.Text=="实时趋势更新")
             {
-                string name = this.cmbTrendArea.Text + item.ToString();
-                Series series = new Series(name);
-                series.ChartType = SeriesChartType.Spline;
-                series.BorderWidth = 3;
-                series.XValueType = ChartValueType.DateTime;
-                //如果是电流或者频率的点位，就添加到Y2轴
-                if (item.ToString().Contains("电流")||item.ToString().Contains("频率"))
-                {
-                    series.YAxisType = AxisType.Secondary;
-                }
-                else
-                {
-                    series.YAxisType = AxisType.Primary;
-                }
-                this.chart1.Series.Add(series);
+                timer1.Enabled = true;
+                btnUpdate.Text = "暂停更新";
             }
-            timer1.Enabled = true;
-
+            else if(btnUpdate.Text == "暂停更新")
+            {
+                timer1.Enabled = false;
+                btnUpdate.Text = "实时趋势更新";
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             GrpVarSelect.UnSelectAll();
         }
-
+        //历史趋势查询
         private void BtnQuery_Click(object sender, EventArgs e)
         {
+            this.cmbTrendType.SelectedIndex = 1;
+            //开始历史查询就停止实时更新的使能
+            timer1.Enabled = false;
+            this.btnUpdate.Text="实时趋势更新";
+
             #region 时间范围判断
             DateTime startTime = this.DtpStart.Value;
             DateTime endTime = this.DtpEnd.Value;
@@ -121,20 +149,12 @@ namespace Air
                 UIMessageBox.ShowWarning("查询范围太大，请缩小查询范围，最大间隔为7天。");
                 return;
             }
+            
             #endregion
-
-            if (BtnStop.Text=="暂停更新")
-            {
-                //停止更新
-                BtnStop.Text = "继续更新";
-                //timer1.Enabled = false;
-            }
-            else
-            {
-                //更新的事件
-                BtnStop.Text = "暂停更新";
-                //timer1.Enabled = true;
-            }
+            //给chart1添加选中的变量的曲线series
+            AddSeries();
+            //历史趋势查询
+            QueryHistoryTrend(startTime, endTime);
 
         }
 
@@ -176,5 +196,7 @@ namespace Air
                 series.Points.AddXY(X, Y);
             }
         }
+
+        
     }
 }

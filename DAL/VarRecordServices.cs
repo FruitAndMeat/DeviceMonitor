@@ -41,5 +41,10 @@ namespace DAL
 
         //}
         #endregion
+
+
+        #region 根据时间查询历史趋势
+
+        #endregion
     }
 }

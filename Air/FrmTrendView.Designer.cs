@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTrendView));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.uiSplitContainer1 = new Sunny.UI.UISplitContainer();
             this.btnCancel = new Sunny.UI.UIButton();
+            this.btnUpdate = new Sunny.UI.UIButton();
             this.btnConfirm = new Sunny.UI.UIButton();
             this.GrpVarSelect = new Sunny.UI.UICheckBoxGroup();
             this.cmbTrendArea = new Sunny.UI.UIComboBox();
@@ -45,7 +46,7 @@
             this.uiLabel1 = new Sunny.UI.UILabel();
             this.DtpEnd = new Sunny.UI.UIDatetimePicker();
             this.DtpStart = new Sunny.UI.UIDatetimePicker();
-            this.BtnStop = new Sunny.UI.UIButton();
+            this.BtnQuery = new Sunny.UI.UIButton();
             this.uiLabel3 = new Sunny.UI.UILabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -73,6 +74,7 @@
             // uiSplitContainer1.Panel1
             // 
             this.uiSplitContainer1.Panel1.Controls.Add(this.btnCancel);
+            this.uiSplitContainer1.Panel1.Controls.Add(this.btnUpdate);
             this.uiSplitContainer1.Panel1.Controls.Add(this.btnConfirm);
             this.uiSplitContainer1.Panel1.Controls.Add(this.GrpVarSelect);
             this.uiSplitContainer1.Panel1.Controls.Add(this.cmbTrendArea);
@@ -93,15 +95,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.Location = new System.Drawing.Point(10, 480);
+            this.btnCancel.Location = new System.Drawing.Point(10, 439);
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(169, 35);
             this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "取消选择";
             this.btnCancel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdate.Location = new System.Drawing.Point(10, 484);
+            this.btnUpdate.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(169, 35);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "实时趋势更新";
+            this.btnUpdate.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdate.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnConfirm
             // 
@@ -109,15 +127,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConfirm.Location = new System.Drawing.Point(11, 416);
+            this.btnConfirm.Location = new System.Drawing.Point(10, 394);
             this.btnConfirm.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(169, 35);
             this.btnConfirm.TabIndex = 2;
-            this.btnConfirm.Text = "确认";
+            this.btnConfirm.Text = "确定";
             this.btnConfirm.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnConfirm.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            this.btnConfirm.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // GrpVarSelect
             // 
@@ -204,7 +222,7 @@
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel1);
             this.uiSplitContainer2.Panel2.Controls.Add(this.DtpEnd);
             this.uiSplitContainer2.Panel2.Controls.Add(this.DtpStart);
-            this.uiSplitContainer2.Panel2.Controls.Add(this.BtnStop);
+            this.uiSplitContainer2.Panel2.Controls.Add(this.BtnQuery);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel3);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel2);
             this.uiSplitContainer2.Size = new System.Drawing.Size(1082, 531);
@@ -216,47 +234,47 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
-            chartArea1.AxisX.LabelStyle.Format = "yyyy-MM-dd HH:mm:ss";
-            chartArea1.AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-            chartArea1.AxisX.MajorGrid.Interval = 0D;
-            chartArea1.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-            chartArea1.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-            chartArea1.AxisX.Title = "时间";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            chartArea1.AxisX2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Interval = 0D;
-            chartArea1.AxisY.Maximum = 400D;
-            chartArea1.AxisY.MaximumAutoSize = 100F;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
-            chartArea1.AxisY.Title = "电压值";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-            chartArea1.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
-            chartArea1.AxisY2.Title = "电流与输出频率值";
-            chartArea1.AxisY2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea2.AxisX.LabelStyle.Format = "yyyy-MM-dd HH:mm:ss";
+            chartArea2.AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea2.AxisX.MajorGrid.Interval = 0D;
+            chartArea2.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea2.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea2.AxisX.Title = "时间";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea2.AxisX2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.AxisY.MajorGrid.Interval = 0D;
+            chartArea2.AxisY.Maximum = 400D;
+            chartArea2.AxisY.MaximumAutoSize = 100F;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea2.AxisY.Title = "电压值";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea2.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
+            chartArea2.AxisY2.Title = "电流与输出频率值";
+            chartArea2.AxisY2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.BackColor = System.Drawing.Color.Transparent;
-            legend1.Name = "Legend1";
-            legend1.Position.Auto = false;
-            legend1.Position.Height = 5F;
-            legend1.Position.Width = 8F;
-            legend1.Position.X = 90F;
-            legend1.Position.Y = 3F;
-            this.chart1.Legends.Add(legend1);
+            legend2.BackColor = System.Drawing.Color.Transparent;
+            legend2.Name = "Legend1";
+            legend2.Position.Auto = false;
+            legend2.Position.Height = 5F;
+            legend2.Position.Width = 8F;
+            legend2.Position.X = 90F;
+            legend2.Position.Y = 3F;
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1082, 468);
             this.chart1.TabIndex = 0;
             // 
@@ -331,19 +349,19 @@
             this.DtpStart.Value = new System.DateTime(2022, 6, 28, 16, 2, 34, 427);
             this.DtpStart.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // BtnStop
+            // BtnQuery
             // 
-            this.BtnStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnStop.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnStop.Location = new System.Drawing.Point(932, 11);
-            this.BtnStop.MinimumSize = new System.Drawing.Size(1, 1);
-            this.BtnStop.Name = "BtnStop";
-            this.BtnStop.Size = new System.Drawing.Size(115, 35);
-            this.BtnStop.TabIndex = 8;
-            this.BtnStop.Text = "暂停更新";
-            this.BtnStop.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnStop.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.BtnStop.Click += new System.EventHandler(this.BtnQuery_Click);
+            this.BtnQuery.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnQuery.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnQuery.Location = new System.Drawing.Point(932, 11);
+            this.BtnQuery.MinimumSize = new System.Drawing.Size(1, 1);
+            this.BtnQuery.Name = "BtnQuery";
+            this.BtnQuery.Size = new System.Drawing.Size(115, 35);
+            this.BtnQuery.TabIndex = 8;
+            this.BtnQuery.Text = "历史趋势查询";
+            this.BtnQuery.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnQuery.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.BtnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
             // 
             // uiLabel3
             // 
@@ -408,12 +426,13 @@
         private Sunny.UI.UISplitContainer uiSplitContainer2;
         private Sunny.UI.UIDatetimePicker DtpEnd;
         private Sunny.UI.UIDatetimePicker DtpStart;
-        private Sunny.UI.UIButton BtnStop;
+        private Sunny.UI.UIButton BtnQuery;
         private Sunny.UI.UILabel uiLabel3;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UIIntegerUpDown txtCount;
         private Sunny.UI.UILabel uiLabel1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private Sunny.UI.UIButton btnUpdate;
     }
 }
