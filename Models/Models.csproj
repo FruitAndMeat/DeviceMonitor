@@ -44,10 +44,13 @@
     <Compile Include="Admins.cs" />
     <Compile Include="Alarm.cs" />
     <Compile Include="AlarmRecord.cs" />
-    <Compile Include="Enum\CommType.cs" />
+    <Compile Include="Enum\AlarmType.cs" />
+    <Compile Include="Enum\AlarmState.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="Enum\PLCDataType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranks.cs" />
+    <Compile Include="Enum\RegisterType.cs" />
     <Compile Include="StoreArea.cs" />
     <Compile Include="VarAlarm.cs" />
     <Compile Include="Variables.cs" />

@@ -161,5 +161,52 @@ namespace DAL
                 conn.Close();
             }
         }
+
+
+        /// <summary>
+        /// 启用事务提交多条不带参数的SQL语句
+        /// </summary>
+        /// <param name="sqlList">SQL语句List集合</param>
+        /// <returns>执行结果，成功为True,失败为False</returns>
+        public static bool UpdateByTran(string sql, List<SqlParameter[]> sqlParameters)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                cmd.Transaction = conn.BeginTransaction();//开启数据库事务。
+                foreach (SqlParameter[] parameter in sqlParameters)
+                {
+                    cmd.CommandText = sql;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddRange(parameter);
+                    cmd.ExecuteNonQuery();
+                }
+                cmd.Transaction.Commit();//提交事务
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (cmd.Transaction!=null)
+                {
+                    cmd.Transaction.Rollback();//捕捉异常就回滚事务
+                }
+                string errorInfo = "调用UpdateByTran(string sql, List<SqlParameter[]> sqlParameters)方法时发生错误，具体信息：" + ex.Message;
+                LogHelper.WriteLog(errorInfo);
+                throw ex;
+            }
+            finally
+            {
+                if (cmd.Transaction!=null)
+                {
+                    cmd.Transaction = null;//执行完清空事务
+                }
+                conn.Close();
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Models
     public class VarRecord
     {
         /// <summary>记录ID</summary>
-        public int ID { get; set; }
+        public int ID { get;}
 
         /// <summary>对应的变量ID</summary>
         public string VarName { get; set; }

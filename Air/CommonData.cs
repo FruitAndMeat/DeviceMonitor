@@ -19,6 +19,9 @@ namespace Air
         public static Device objDevice = null;
 
         public static Modbus objMod = null;
+
+        #region 相关配置文件路径
+
         
         /// <summary>
         /// 设备配置文件路径
@@ -36,6 +39,8 @@ namespace Air
         /// 存储区域配置路径
         /// </summary>
         public static readonly string storeAreaPath = System.Windows.Forms.Application.StartupPath + "\\ConfigFile\\StoreArea.xml";
+        #endregion
+
 
         /// <summary>变量名称与变量值的字典集合 </summary>
         public static Dictionary<string, string> CurrentValue = new Dictionary<string, string>();
@@ -60,12 +65,22 @@ namespace Air
 
         /// <summary>报警缓存区列表</summary>
         public static List<AlarmRecord> alarmRecordList = new List<AlarmRecord>();
-
         /*优化*/
         /// <summary>
         /// 报警缓存区列表的最大值
         /// </summary>
         public static readonly int alarmRecordMax = 100;
+
+        #region 历史趋势相关
+
+        //双重list，一个VarRecord就是一个点，一个List<VarRecord>就是一条曲线，List<List<VarRecord>>就是几条曲线一起.
+        /// <summary>趋势缓冲区变量</summary>
+        public static List<List<VarRecord>> varRecordList = new List<List<VarRecord>>();
+        /// <summary>趋势缓冲区存储数量，即每条曲线最多的点数。</summary>
+        public const int RecordCount = 600;
+
+        #endregion
+
 
         /// <summary>线程专用数据写入的标志位</summary>
         public static bool IsWriteing=false;

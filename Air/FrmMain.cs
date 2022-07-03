@@ -112,6 +112,7 @@ namespace Air
             {
                 CommonData.objMod = new Modbus(CommonData.objDevice);
                 CommonData.CommOk = true;
+                InsertData insertData = new InsertData(1000);
                 objComm.t.Start();
             }
             catch
@@ -281,7 +282,6 @@ namespace Air
                                     objAlarmRS.InsertAlarmData(temp);
                                     NewAlarmHandle(temp);
                                 }
-
                                 break;
                     }
                 }
