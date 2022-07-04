@@ -68,19 +68,19 @@ create table Admins
 )
 go
 
---创建变量清单表
-if exists(select * from sysobjects where name='Variables')
-	drop table Variables
-go
-create table Variables
-(
-	VariableID int identity(1,1) primary key, --变量ID
-	VarName varchar(20) not null,--变量名称
-	VarAddr int unique not null, --变量地址
-	MachineID int foreign key references Devices(DeviceID) not null,--变量的来自设备
-	VarRemark varchar(50),--变量注释
-)
-go
+----创建变量清单表
+--if exists(select * from sysobjects where name='Variables')
+--	drop table Variables
+--go
+--create table Variables
+--(
+--	VariableID int identity(1,1) primary key, --变量ID
+--	VarName varchar(20) not null,--变量名称
+--	VarAddr int unique not null, --变量地址
+--	MachineID int foreign key references Devices(DeviceID) not null,--变量的来自设备
+--	VarRemark varchar(50),--变量注释
+--)
+--go
 --创建变量记录表
 if	exists(select * from sysobjects where name='VarRecord')
 	drop table VarRecord
@@ -88,8 +88,8 @@ go
 create table VarRecord
 (
 	ID int identity(1,1),
-	VariableID int foreign key references Variables(VariableID),
-	InsertDate smalldatetime not null,
+	VarName varchar(20) not null,
+	InsertTime datetime not null,
 	VarValue real not null,
 )
 go
