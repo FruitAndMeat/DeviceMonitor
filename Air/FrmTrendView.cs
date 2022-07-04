@@ -36,6 +36,7 @@ namespace Air
                 series.ChartType = SeriesChartType.Spline;
                 series.BorderWidth = 3;
                 series.XValueType = ChartValueType.DateTime;
+                series.YValueType = ChartValueType.Single;
                 //如果是电流或者频率的点位，就添加到Y2轴
                 if (item.ToString().Contains("电流") || item.ToString().Contains("频率"))
                 {
@@ -52,8 +53,7 @@ namespace Air
         private async void QueryHistoryTrend(DateTime startTime,DateTime endTime)
         {
 
-
-            await ;
+            
         }
         #endregion
 
@@ -70,48 +70,13 @@ namespace Air
             this.txtCount.Value = 20;
 
             #endregion
-
-            #region UILineChart图表初始化(废弃)
-            //option.Series.Clear();
-            //option.Title.Text = this.cmbTrendType.Text;
-            //option.Title.SubText = this.cmbTrendArea.Text;
-            //option.XAxisType = UIAxisType.DateTime;
-            //option.XAxis.Name = "时间";
-            //option.XAxis.AxisLabel.AutoFormat = false;
-            //option.XAxis.AxisLabel.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-
-            //option.YAxis.Name = "输出电流与电压";
-            //option.YAxis.MaxAuto = true;
-
-            //option.Y2Axis.Name = "输出频率";
-            //option.Y2Axis.MaxAuto = true;
-
-
-            //TrendChart.SetOption(option);
-            #endregion
+            
         }
         //实时趋势更新
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            #region UILineChart添加曲线（废弃）
-            //option.Series.Clear();
-            //foreach (var item in GrpVarSelect.SelectedItems)
-            //{
-            //    string seriesName = this.cmbTrendArea.Text + item.ToString();
-            //    bool isY2  = item.ToString() == "输出频率" ? true : false;
-            //    //UILineSeries lineSeries = new UILineSeries(seriesName);
-            //    var lineSeries = option.AddSeries(new UILineSeries(seriesName,Color.AliceBlue,isY2));
 
-            //    lineSeries.Visible = true;
-            //    lineSeries.SymbolLineWidth = 2;
-            //    lineSeries.SymbolSize = 4;
-            //    lineSeries.Smooth = true;
-            //    lineSeries.ShowLine = true;
-            //}
-            #endregion
-
-            AddSeries();
-            this.cmbTrendType.SelectedIndex = 0;
+            
             if (btnUpdate.Text=="实时趋势更新")
             {
                 timer1.Enabled = true;
@@ -122,6 +87,10 @@ namespace Air
                 timer1.Enabled = false;
                 btnUpdate.Text = "实时趋势更新";
             }
+        }
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            AddSeries();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -160,13 +129,12 @@ namespace Air
 
         private void cmbTrendType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //option.Title.Text = this.cmbTrendType.Text;
+            
         }
 
         private void cmbTrendArea_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //option.Title.SubText = this.cmbTrendArea.Text;
-            //GrpVarSelect.UnSelectAll();
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -174,7 +142,7 @@ namespace Air
             foreach (Series series in this.chart1.Series)
             {
                 List<DateTime> X = new List<DateTime>();
-                List < float> Y = new List<float>();
+                List <double> Y = new List<double>();
                 int index = 0;
                 int recordCount = CommonData.varRecordList.Count;
                 for (int i = 0; i < CommonData.fileVarList.Count; i++)
@@ -193,10 +161,23 @@ namespace Air
                     Y.Add(list[index].VarValue);
                 }
                 series.IsValueShownAsLabel = false;
-                series.Points.AddXY(X, Y);
+                series.Points.DataBindXY(X, Y);
             }
         }
 
-        
+        private void chart1_GetToolTipText(object sender, ToolTipEventArgs e)
+        {
+
+            HitTestResult myTestResult = chart1.HitTest(e.X, e.Y, ChartElementType.DataPoint);//获取命中测试的结果
+            if (myTestResult.ChartElementType == ChartElementType.DataPoint)
+            {
+                int i = myTestResult.PointIndex;
+                DataPoint dp = myTestResult.Series.Points[i];
+                //string XValue =Convert.ToDateTime(dp.XValue).ToString("yyyy-MM-dd HH:mm:ss");//获取数据点的时间值
+                DateTime dt = DateTime.FromOADate(dp.XValue);
+                string YValue = dp.YValues[0].ToString();//获取数据点的Y值
+                e.Text = "名称:" + myTestResult.Series.Name + "\r\n时间:" + dt.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n数值:" + YValue;
+            }
+        }
     }
 }

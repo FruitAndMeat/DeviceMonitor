@@ -66,7 +66,11 @@ namespace Air
 
         private void CommonData_update()
         {
-           this.dgvAlarm.Invoke(new Action(UpdateDGVAlarm));
+            try
+            {
+                this.dgvAlarm.Invoke(new Action(UpdateDGVAlarm));
+            }
+            catch { }
         }
 
         private void FrmAlarmView_Load(object sender, EventArgs e)
