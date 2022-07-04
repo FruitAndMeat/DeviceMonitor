@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DAL
 {
@@ -44,6 +45,25 @@ namespace DAL
 
 
         #region 根据时间查询历史趋势
+        public DataTable GetHistoryDataByDateTime(string varName,DateTime startTime,DateTime endTime)
+        {
+            string sql = "select InsertTime,VarValue from VarRecord " +
+                "where VarName=@VarName and InsertTime between @startTime and @endTime";
+            SqlParameter[] parameters =
+                {
+                new SqlParameter("@VarName",varName),
+                new SqlParameter("@startTime",startTime),
+                new SqlParameter("@endTime",endTime),
+            };
+            try
+            {
+                return SQLHelper.GetDataSet(sql, parameters).Tables[0];
+            }
+            catch 
+            {
+                return null;
+            }
+        }
 
         #endregion
     }

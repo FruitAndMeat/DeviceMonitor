@@ -19,10 +19,11 @@ namespace Air
         public FrmTrendView()
         {
             InitializeComponent();
-            //option  = this. TrendChart.Option;
+            
         }
-
-        //private UILineOption option; 
+        /// <summary>变量数据记录访问类</summary>
+        VarRecordServices objVRS = new VarRecordServices();
+        
 
         #region 自定义私有方法
         //给chart1添加选中的变量的曲线series
@@ -50,12 +51,34 @@ namespace Air
             }
         }
 
-        private async void QueryHistoryTrend(DateTime startTime,DateTime endTime)
+        private void QueryHistoryTrend(DateTime startTime, DateTime endTime)
         {
+            List<DataTable> list = new List<DataTable>();
+            for (int i = 0; i < this.chart1.Series.Count; i++)
+            {
+                DataTable dt = objVRS.GetHistoryDataByDateTime(this.chart1.Series[i].Name, startTime, endTime);
+                if (dt != null)
+                {
+                    list.Add(dt);
+                }
+            }
 
-            
+           if (list.Count == this.chart1.Series.Count)
+            {
+                for (int i = 0; i < this.chart1.Series.Count; i++)
+                {
+                    this.chart1.Series[i].Points.Clear();
+                    this.chart1.Series[i].IsValueShownAsLabel = false;
+                    this.chart1.Series[i].Points.DataBind(list[i].AsEnumerable(), "InsertTime", "VarValue", "");
+                }
+           }
+
         }
+
+        
         #endregion
+
+
 
         private void FrmTrendView_Load(object sender, EventArgs e)
         {
@@ -75,8 +98,6 @@ namespace Air
         //实时趋势更新
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
-            
             if (btnUpdate.Text=="实时趋势更新")
             {
                 timer1.Enabled = true;
@@ -123,7 +144,7 @@ namespace Air
             //给chart1添加选中的变量的曲线series
             AddSeries();
             //历史趋势查询
-            QueryHistoryTrend(startTime, endTime);
+            Task t= Task.Run(() => QueryHistoryTrend(startTime, endTime));
 
         }
 
@@ -173,7 +194,6 @@ namespace Air
             {
                 int i = myTestResult.PointIndex;
                 DataPoint dp = myTestResult.Series.Points[i];
-                //string XValue =Convert.ToDateTime(dp.XValue).ToString("yyyy-MM-dd HH:mm:ss");//获取数据点的时间值
                 DateTime dt = DateTime.FromOADate(dp.XValue);
                 string YValue = dp.YValues[0].ToString();//获取数据点的Y值
                 e.Text = "名称:" + myTestResult.Series.Name + "\r\n时间:" + dt.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n数值:" + YValue;
