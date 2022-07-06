@@ -226,7 +226,7 @@
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel3);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel2);
             this.uiSplitContainer2.Size = new System.Drawing.Size(1082, 531);
-            this.uiSplitContainer2.SplitterDistance = 468;
+            this.uiSplitContainer2.SplitterDistance = 470;
             this.uiSplitContainer2.SplitterWidth = 1;
             this.uiSplitContainer2.TabIndex = 0;
             this.uiSplitContainer2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -271,7 +271,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1082, 468);
+            this.chart1.Size = new System.Drawing.Size(1082, 470);
             this.chart1.TabIndex = 0;
             this.chart1.GetToolTipText += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs>(this.chart1_GetToolTipText);
             // 

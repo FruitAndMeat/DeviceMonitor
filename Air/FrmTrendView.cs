@@ -62,19 +62,22 @@ namespace Air
                     list.Add(dt);
                 }
             }
+            chart1.Invoke(new Action<List<DataTable>>(ShowHistoryData), list);
+        }
 
-           if (list.Count == this.chart1.Series.Count)
+        private void ShowHistoryData(List<DataTable> list)
+        {
+            if (list.Count == this.chart1.Series.Count)
             {
                 for (int i = 0; i < this.chart1.Series.Count; i++)
                 {
+
                     this.chart1.Series[i].Points.Clear();
                     this.chart1.Series[i].IsValueShownAsLabel = false;
                     this.chart1.Series[i].Points.DataBind(list[i].AsEnumerable(), "InsertTime", "VarValue", "");
                 }
-           }
-
+            }
         }
-
         
         #endregion
 
@@ -93,6 +96,8 @@ namespace Air
             this.txtCount.Value = 20;
 
             #endregion
+
+            
             
         }
         //实时趋势更新

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sunny.UI;
+using DAL;
+using Models;
 
 namespace Air
 {
@@ -16,6 +18,32 @@ namespace Air
         public FrmReport()
         {
             InitializeComponent();
+        }
+
+        private void FrmReport_Load(object sender, EventArgs e)
+        {
+            cmbClassSelect.Items.AddRange(new string[] { "早班", "中班", "晚班" });
+            cmbReportType.Items.AddRange(new string[] { "班报表", "日报表", "周报表", "月报表" });
+        }
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPriview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
