@@ -27,7 +27,7 @@ namespace Air
         private void Query()
         {
             this.dgvReport.Columns.Clear();
-
+            
         }
         #endregion
 
