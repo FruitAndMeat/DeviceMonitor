@@ -30,10 +30,6 @@ namespace Air
             if (CommonData.CommOk==true)
             {
                 InsertActualData();
-                if (DateTime.Now.Minute==0&&DateTime.Now.Second==0)
-                {
-                    InsertReportData();
-                }
             }
         }
         /// <summary>

@@ -58,6 +58,12 @@
     <Compile Include="CommonData.cs" />
     <Compile Include="CommonMethod.cs" />
     <Compile Include="CommonThread.cs" />
+    <Compile Include="FrmQuerySelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuerySelect.Designer.cs">
+      <DependentUpon>FrmQuerySelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="HardwareConfig\VariableConfig\FrmModifyVariable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQuerySelect.resx">
+      <DependentUpon>FrmQuerySelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HardwareConfig\VariableConfig\FrmModifyVariable.resx">
       <DependentUpon>FrmModifyVariable.cs</DependentUpon>

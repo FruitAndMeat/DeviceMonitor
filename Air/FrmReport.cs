@@ -20,6 +20,17 @@ namespace Air
             InitializeComponent();
         }
 
+        List<Variables> ReportList;
+
+        #region 自定义方法
+
+        private void Query()
+        {
+            this.dgvReport.Columns.Clear();
+
+        }
+        #endregion
+
         private void FrmReport_Load(object sender, EventArgs e)
         {
             cmbClassSelect.Items.AddRange(new string[] { "早班", "中班", "晚班" });
@@ -28,7 +39,12 @@ namespace Air
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-
+            FrmQuerySelect objFrm = new FrmQuerySelect();
+            objFrm.ShowDialog();
+            if (objFrm.DialogResult==DialogResult.OK)
+            {
+                ReportList = objFrm.SelectedList;
+            }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
