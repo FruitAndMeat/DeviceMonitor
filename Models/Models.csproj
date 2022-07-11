@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranks.cs" />
     <Compile Include="Enum\RegisterType.cs" />
+    <Compile Include="Enum\ReportType.cs" />
     <Compile Include="StoreArea.cs" />
     <Compile Include="VarAlarm.cs" />
     <Compile Include="Variables.cs" />

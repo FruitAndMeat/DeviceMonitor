@@ -112,8 +112,8 @@ namespace Air
             {
                 CommonData.objMod = new Modbus(CommonData.objDevice);
                 CommonData.CommOk = true;
-                //一分钟保存一次
-                InsertData insertData = new InsertData(1000*60);
+                //一秒扫描一次，内部一分钟保存一次
+                InsertData insertData = new InsertData(1000);
                 objComm.t.Start();
             }
             catch

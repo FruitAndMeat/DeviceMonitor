@@ -27,21 +27,15 @@ namespace Air
 
         private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (CommonData.CommOk==true)
+            if (CommonData.CommOk==true&&DateTime.Now.Second==0)
             {
                 InsertActualData();
             }
         }
-        /// <summary>
-        /// 插入报表数据，一分钟一次
-        /// </summary>
-        private void InsertReportData()
-        {
-            
-        }
+        
 
         /// <summary>
-        /// 插入实时数据
+        /// 插入实时数据,一分钟一次
         /// </summary>
         private void InsertActualData()
         {

@@ -36,13 +36,6 @@ namespace DAL
 
         #endregion
 
-        #region 插入报表数据
-        //public void InsertReportData()
-        //{
-
-        //}
-        #endregion
-
 
         #region 根据时间查询历史趋势
         public DataTable GetHistoryDataByDateTime(string varName,DateTime startTime,DateTime endTime)
@@ -63,6 +56,52 @@ namespace DAL
             {
                 return null;
             }
+        }
+
+        #endregion
+
+        #region 根据时间区间批量查询历史记录
+        public DataTable GetHistoryDataByTimeArea(List<Variables> varList,DateTime endTime,string reportType)
+        {
+            string condition = string.Empty;
+            string content = string.Empty;
+            for (int i = 0; i < varList.Count; i++)
+            {
+                if (i==varList.Count-1)
+                {
+                    content += "'"+varList[i].VarName+"'";
+                    break;
+                }
+                content += "'"+varList[i].VarName + "',";
+                
+            }
+            switch (reportType)
+            {
+                case "班报表":
+                    condition = "DateDiff(hh,@endTime,InsertTime)>=0 and DateDiff(hh,@endTime,InsertTime)<=7";
+                    break;
+                case "日报表":
+                    condition="DateDiff(dd,@endTime,InsertTime)>=0";
+                        break;
+                case "周报表":
+                    condition = "DateDiff(dd,@endTime,InsertTime)>=0 and DateDiff(dd,@endTime,InsertTime)<=6";
+                    break;
+                case "月报表":
+                    condition = "DateDiff(MM,@endTime,InsertTime)=0";
+                    break;
+            }
+            string sql = "Select InsertTime,VarName,VarValue from VarRecord where VarName In ("+content+") and "+condition;
+            SqlParameter[] parameters = { new SqlParameter("@endTime", endTime) };
+            try
+            {
+               return  SQLHelper.GetDataSet(sql, parameters).Tables[0];
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         #endregion
