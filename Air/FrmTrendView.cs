@@ -95,6 +95,8 @@ namespace Air
             this.DtpEnd.Value = DateTime.Now;
             this.txtCount.Value = 20;
 
+            this.chart1.ChartAreas[0].AxisX.Interval = 3;
+
             #endregion
 
             

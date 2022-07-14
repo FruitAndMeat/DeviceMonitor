@@ -14,6 +14,8 @@ namespace Air
         #region 私有字段
         System.Timers.Timer _timer;
         VarRecordServices _objVRS = new VarRecordServices();
+
+        
         #endregion
 
         public InsertData(ushort interval)
@@ -27,7 +29,7 @@ namespace Air
 
         private void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (CommonData.CommOk==true&&DateTime.Now.Second==0)
+            if (CommonData.CommOk==true)
             {
                 InsertActualData();
             }
@@ -42,7 +44,7 @@ namespace Air
             if (CommonData.CurrentValue!=null&&CommonData.CurrentValue.Count>0)
             {
                 List<VarRecord> varRecords = new List<VarRecord>();
-                List<string> sqlList = new List<string>();//存储事务sql语句的集合
+                //List<string> sqlList = new List<string>();//存储事务sql语句的集合
                 foreach (Variables item in CommonData.fileVarList)
                 {
                     string varName = item.VarName;
@@ -55,14 +57,18 @@ namespace Air
                     { InsertTime = DateTime.Now, VarName = varName, VarValue =value});
                 }
                 //添加完语句开始执行事务
-                try
+                if (DateTime.Now.Second == 0)
                 {
-                    _objVRS.InsertActualData(varRecords);
+                    try
+                    {
+                        _objVRS.InsertActualData(varRecords);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
-                catch (Exception)
-                {
-                    
-                }
+                
                 if (CommonData.varRecordList.Count >= CommonData.RecordCount)
                 {
                     CommonData.varRecordList.RemoveAt(0);

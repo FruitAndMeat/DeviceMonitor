@@ -21,7 +21,7 @@ namespace Air
         }
 
         /// <summary>选择完的报表变量</summary>
-        public List<Variables> SelectedList = new List<Variables>();
+        public List<string> SelectedList = new List<string>();
 
         #region 自定义方法
 
@@ -31,7 +31,7 @@ namespace Air
             {
                 if (item.VarName.Contains(areaName))
                 {
-                    SelectedList.Add(item);
+                    SelectedList.Add(item.VarName);
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace Air
                     {
                         if (item.VarName==varName)
                         {
-                            SelectedList.Add(item);
+                            SelectedList.Add(item.VarName);
                             break;
                         }
                     }

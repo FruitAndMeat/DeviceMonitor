@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SqlSugar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Models
     public class VarRecord
     {
         /// <summary>记录ID</summary>
+        [SugarColumn(IsIdentity =true)]
         public int ID { get;}
 
         /// <summary>对应的变量ID</summary>

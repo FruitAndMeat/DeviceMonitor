@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.BtnPanel = new Sunny.UI.UIPanel();
             this.btnAbout = new Sunny.UI.UIButton();
+            this.lblUser = new Sunny.UI.UILabel();
             this.btnHardwareConfig = new Sunny.UI.UIButton();
+            this.uiLabel2 = new Sunny.UI.UILabel();
             this.btnReport = new Sunny.UI.UIButton();
             this.btnTrendView = new Sunny.UI.UIButton();
             this.btnAlarmView = new Sunny.UI.UIButton();
             this.btnParamSet = new Sunny.UI.UIButton();
             this.btnIOMonitor = new Sunny.UI.UIButton();
-            this.uiLabel2 = new Sunny.UI.UILabel();
-            this.lblUser = new Sunny.UI.UILabel();
             this.lblTime = new Sunny.UI.UILabel();
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.lblTitle = new Sunny.UI.UILabel();
@@ -87,6 +88,18 @@
             this.btnAbout.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
+            // lblUser
+            // 
+            this.lblUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblUser.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblUser.Location = new System.Drawing.Point(1123, 12);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(141, 30);
+            this.lblUser.TabIndex = 3;
+            this.lblUser.Text = "系统管理员";
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUser.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
             // btnHardwareConfig
             // 
             this.btnHardwareConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -102,6 +115,18 @@
             this.btnHardwareConfig.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnHardwareConfig.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnHardwareConfig.Click += new System.EventHandler(this.btnHardwareConfig_Click);
+            // 
+            // uiLabel2
+            // 
+            this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.uiLabel2.Location = new System.Drawing.Point(1013, 13);
+            this.uiLabel2.Name = "uiLabel2";
+            this.uiLabel2.Size = new System.Drawing.Size(93, 29);
+            this.uiLabel2.TabIndex = 2;
+            this.uiLabel2.Text = "当前用户：";
+            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
             // btnReport
             // 
@@ -183,30 +208,6 @@
             this.btnIOMonitor.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnIOMonitor.Click += new System.EventHandler(this.btnIOMonitor_Click);
             // 
-            // uiLabel2
-            // 
-            this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel2.Location = new System.Drawing.Point(1013, 13);
-            this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(93, 29);
-            this.uiLabel2.TabIndex = 2;
-            this.uiLabel2.Text = "当前用户：";
-            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.uiLabel2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
-            // lblUser
-            // 
-            this.lblUser.BackColor = System.Drawing.Color.Transparent;
-            this.lblUser.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblUser.Location = new System.Drawing.Point(1123, 12);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(141, 30);
-            this.lblUser.TabIndex = 3;
-            this.lblUser.Text = "系统管理员";
-            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblUser.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
             // lblTime
             // 
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
@@ -273,6 +274,7 @@
             this.Controls.Add(this.uiPanel1);
             this.Controls.Add(this.BtnPanel);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.Text = "XXXX设备监测系统";

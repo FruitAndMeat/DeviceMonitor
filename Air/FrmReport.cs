@@ -20,18 +20,12 @@ namespace Air
             InitializeComponent();
         }
 
-        List<Variables> ReportList;
+        List<string> ReportList;
         VarRecordServices objVRS = new VarRecordServices();
 
         #region 自定义方法
 
-        private void Test(DataTable dt)
-        {
-            foreach (var row in dt.Rows)
-            {
-                
-            }
-        }
+        
 
         private void InitialDGV(DataGridView dgv,List<Variables> list )
         {
@@ -80,15 +74,17 @@ namespace Air
                     UIMessageBox.ShowInfo("未选择任何变量！查询失败");
                     return;
                 }
-                InitialDGV(dgvReport,ReportList);
-                DataTable dt=  objVRS.GetHistoryDataByTimeArea(ReportList, dtpQueryTime.Value, cmbReportType.Text);
-                //dgvReport.DataSource = dt;
+                //InitialDGV(dgvReport,ReportList);
+                //DataTable dt=  objVRS.GetHistoryDataByTimeArea(ReportList, dtpQueryTime.Value, cmbReportType.Text);
+                
+
+                dgvReport.DataSource = objVRS.QueryReport(ReportList, dtpQueryTime.Value, cmbReportType.Text);
             }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnPriview_Click(object sender, EventArgs e)

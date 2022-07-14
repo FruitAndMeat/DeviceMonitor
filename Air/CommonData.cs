@@ -77,7 +77,7 @@ namespace Air
         /// <summary>趋势缓冲区变量</summary>
         public static List<List<VarRecord>> varRecordList = new List<List<VarRecord>>();
         /// <summary>趋势缓冲区存储数量，即每条曲线最多的点数。</summary>
-        public const int RecordCount = 600;
+        public const int RecordCount = 60;
 
         #endregion
 

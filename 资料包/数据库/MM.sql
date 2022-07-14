@@ -131,6 +131,8 @@ values (10001,'123456','¹ÜÀíÔ±¶ù','ÄÐ',1)
 go
 
 
-select * from Variables
+
 select * from AlarmRecord
 select * from Ranks
+select * from VarRecord order by InsertTime
+
