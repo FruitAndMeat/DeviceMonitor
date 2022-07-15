@@ -123,7 +123,7 @@ namespace DAL
         {
             DataTable dt = null;
             dt = Db.Queryable<VarRecord>().Where(it=>varNameList.Contains(it.VarName))
-                .Where(it=>it.InsertTime.Second==0)
+                .Where(it=>it.InsertTime.Second==0 && it.InsertTime.Minute==0)
                 .OrderBy(st=>st.InsertTime,OrderByType.Asc)
                 .ToPivotTable(it => it.VarName, it => it.InsertTime, it => it.Sum(x => x.VarValue));
 

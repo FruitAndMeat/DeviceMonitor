@@ -61,132 +61,132 @@
     <Compile Include="CommonData.cs" />
     <Compile Include="CommonMethod.cs" />
     <Compile Include="CommonThread.cs" />
-    <Compile Include="FrmQuerySelect.cs">
+    <Compile Include="UI\Form\FrmQuerySelect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmQuerySelect.Designer.cs">
+    <Compile Include="UI\Form\FrmQuerySelect.Designer.cs">
       <DependentUpon>FrmQuerySelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmModifyVariable.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmModifyVariable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmModifyVariable.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmModifyVariable.Designer.cs">
       <DependentUpon>FrmModifyVariable.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmNewVariable.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmNewVariable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmNewVariable.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmNewVariable.Designer.cs">
       <DependentUpon>FrmNewVariable.cs</DependentUpon>
     </Compile>
     <Compile Include="InsertData.cs" />
     <Compile Include="PublicTools\DataValidate.cs" />
-    <Compile Include="FrmAbout.cs">
+    <Compile Include="UI\Form\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAbout.Designer.cs">
+    <Compile Include="UI\Form\FrmAbout.Designer.cs">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\DeviceConfig\FrmNewMachine.cs">
+    <Compile Include="UI\Form\HardwareConfig\DeviceConfig\FrmNewMachine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\DeviceConfig\FrmNewMachine.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\DeviceConfig\FrmNewMachine.Designer.cs">
       <DependentUpon>FrmNewMachine.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\FrmAlarmConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmAlarmConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\FrmAlarmConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmAlarmConfig.Designer.cs">
       <DependentUpon>FrmAlarmConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAlarmView.cs">
+    <Compile Include="UI\Form\FrmAlarmView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAlarmView.Designer.cs">
+    <Compile Include="UI\Form\FrmAlarmView.Designer.cs">
       <DependentUpon>FrmAlarmView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHardwareConfig.cs">
+    <Compile Include="UI\Form\FrmHardwareConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmHardwareConfig.Designer.cs">
+    <Compile Include="UI\Form\FrmHardwareConfig.Designer.cs">
       <DependentUpon>FrmHardwareConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHome.cs">
+    <Compile Include="UI\Form\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmHome.Designer.cs">
+    <Compile Include="UI\Form\FrmHome.Designer.cs">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmIOMonitor.cs">
+    <Compile Include="UI\Form\FrmIOMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmIOMonitor.Designer.cs">
+    <Compile Include="UI\Form\FrmIOMonitor.Designer.cs">
       <DependentUpon>FrmIOMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLogin.cs">
+    <Compile Include="UI\Form\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
+    <Compile Include="UI\Form\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="UI\Form\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="UI\Form\Form1.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\DeviceConfig\FrmDeviceConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\DeviceConfig\FrmDeviceConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\DeviceConfig\FrmDeviceConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\DeviceConfig\FrmDeviceConfig.Designer.cs">
       <DependentUpon>FrmDeviceConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmParamSet.cs">
+    <Compile Include="UI\Form\FrmParamSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmParamSet.Designer.cs">
+    <Compile Include="UI\Form\FrmParamSet.Designer.cs">
       <DependentUpon>FrmParamSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\FrmParamsSetConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmParamsSetConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\FrmParamsSetConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmParamsSetConfig.Designer.cs">
       <DependentUpon>FrmParamsSetConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmReport.cs">
+    <Compile Include="UI\Form\FrmReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmReport.Designer.cs">
+    <Compile Include="UI\Form\FrmReport.Designer.cs">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\FrmReportConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmReportConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\FrmReportConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmReportConfig.Designer.cs">
       <DependentUpon>FrmReportConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\FrmTrendConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmTrendConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\FrmTrendConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmTrendConfig.Designer.cs">
       <DependentUpon>FrmTrendConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTrendView.cs">
+    <Compile Include="UI\Form\FrmTrendView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTrendView.Designer.cs">
+    <Compile Include="UI\Form\FrmTrendView.Designer.cs">
       <DependentUpon>FrmTrendView.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\FrmUserConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmUserConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\FrmUserConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\FrmUserConfig.Designer.cs">
       <DependentUpon>FrmUserConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmVariableConfig.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmVariableConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HardwareConfig\VariableConfig\FrmVariableConfig.Designer.cs">
+    <Compile Include="UI\Form\HardwareConfig\VariableConfig\FrmVariableConfig.Designer.cs">
       <DependentUpon>FrmVariableConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -196,67 +196,67 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FrmAbout.resx">
+    <EmbeddedResource Include="UI\Form\FrmAbout.resx">
       <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmQuerySelect.resx">
+    <EmbeddedResource Include="UI\Form\FrmQuerySelect.resx">
       <DependentUpon>FrmQuerySelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\VariableConfig\FrmModifyVariable.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\VariableConfig\FrmModifyVariable.resx">
       <DependentUpon>FrmModifyVariable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\VariableConfig\FrmNewVariable.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\VariableConfig\FrmNewVariable.resx">
       <DependentUpon>FrmNewVariable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\DeviceConfig\FrmNewMachine.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\DeviceConfig\FrmNewMachine.resx">
       <DependentUpon>FrmNewMachine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\FrmAlarmConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\FrmAlarmConfig.resx">
       <DependentUpon>FrmAlarmConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAlarmView.resx">
+    <EmbeddedResource Include="UI\Form\FrmAlarmView.resx">
       <DependentUpon>FrmAlarmView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmHardwareConfig.resx">
+    <EmbeddedResource Include="UI\Form\FrmHardwareConfig.resx">
       <DependentUpon>FrmHardwareConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmHome.resx">
+    <EmbeddedResource Include="UI\Form\FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmIOMonitor.resx">
+    <EmbeddedResource Include="UI\Form\FrmIOMonitor.resx">
       <DependentUpon>FrmIOMonitor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
+    <EmbeddedResource Include="UI\Form\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMain.resx">
+    <EmbeddedResource Include="UI\Form\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\DeviceConfig\FrmDeviceConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\DeviceConfig\FrmDeviceConfig.resx">
       <DependentUpon>FrmDeviceConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmParamSet.resx">
+    <EmbeddedResource Include="UI\Form\FrmParamSet.resx">
       <DependentUpon>FrmParamSet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\FrmParamsSetConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\FrmParamsSetConfig.resx">
       <DependentUpon>FrmParamsSetConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmReport.resx">
+    <EmbeddedResource Include="UI\Form\FrmReport.resx">
       <DependentUpon>FrmReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\FrmReportConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\FrmReportConfig.resx">
       <DependentUpon>FrmReportConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\FrmTrendConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\FrmTrendConfig.resx">
       <DependentUpon>FrmTrendConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTrendView.resx">
+    <EmbeddedResource Include="UI\Form\FrmTrendView.resx">
       <DependentUpon>FrmTrendView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\FrmUserConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\FrmUserConfig.resx">
       <DependentUpon>FrmUserConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HardwareConfig\VariableConfig\FrmVariableConfig.resx">
+    <EmbeddedResource Include="UI\Form\HardwareConfig\VariableConfig\FrmVariableConfig.resx">
       <DependentUpon>FrmVariableConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
