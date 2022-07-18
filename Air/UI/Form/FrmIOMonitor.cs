@@ -20,7 +20,7 @@ namespace Air
         private List<UITextBox> txtBoxList = new List<UITextBox>();
         private List<UISwitch> switchList = new List<UISwitch>();
 
-        void SetBoolValue(object sender,bool value)
+        void  SetBoolValue(object sender,bool value)
         {
             CommonData.IsWriteing = true;
             try
@@ -34,7 +34,7 @@ namespace Air
                             CommonData.objMod.WriteSingleCoil(ushort.Parse(CommonData.CurrentAddress[((UIButton)sender).Tag.ToString()]), value);
                         }
                     }
-                }
+                } 
                 else if (sender is UISwitch)
                 {
                     if (((UISwitch)sender).Tag != null)
@@ -55,8 +55,7 @@ namespace Air
             finally { CommonData.IsWriteing = false; }
         }
 
-        //定时刷新界面
-        private void TimerRefresh_Tick(object sender, EventArgs e)
+       public void RefreshUI()
         {
             try
             {
@@ -82,6 +81,12 @@ namespace Air
                 }
             }
             catch { }
+        }
+
+        //定时刷新界面
+        private void TimerRefresh_Tick(object sender, EventArgs e)
+        {
+            
 
         }
 
@@ -110,7 +115,11 @@ namespace Air
                     switchList.Add((UISwitch)item);
                 }
             }
-            TimerRefresh_Tick(null, null);
+
+            CommonData.UpdateUI = new Action(RefreshUI);
+
+            RefreshUI();
+            //TimerRefresh_Tick(null, null);
         }
 
         private void btnStart1_Click(object sender, EventArgs e)

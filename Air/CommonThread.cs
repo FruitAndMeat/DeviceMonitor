@@ -56,7 +56,10 @@ namespace Air
                     }
                 }
 
-
+                if (CommonData.UpdateUI!=null)
+                {
+                    CommonData.UpdateUI.Invoke();
+                }
                 Thread.Sleep(300);
             }
         }

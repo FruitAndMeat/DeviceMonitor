@@ -10,6 +10,9 @@ namespace Air
 {
     public delegate void UpdateAlarmDelegate();
 
+    /// <summary>跨界面更新UI的委托，在IO监控界面添加方法</summary>
+    //public delegate void AsyncUpdateUI();
+
     public static class CommonData
     {
         /// <summary>全局的操作员信息 </summary>
@@ -86,6 +89,8 @@ namespace Air
         public static bool IsWriteing=false;
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
+
+        public static Action UpdateUI;
 
         public static event UpdateAlarmDelegate update;
 

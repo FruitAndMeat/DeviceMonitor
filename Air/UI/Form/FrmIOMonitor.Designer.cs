@@ -1036,7 +1036,6 @@
             // 
             // TimerRefresh
             // 
-            this.TimerRefresh.Enabled = true;
             this.TimerRefresh.Interval = 300;
             this.TimerRefresh.Tick += new System.EventHandler(this.TimerRefresh_Tick);
             // 
