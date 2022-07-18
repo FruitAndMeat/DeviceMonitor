@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 using DAL;
+using System.Threading;
 
 namespace Air
 {
@@ -54,7 +55,9 @@ namespace Air
                         }
                     }
                 }
-                Task.Delay(500);
+
+
+                Thread.Sleep(300);
             }
         }
 

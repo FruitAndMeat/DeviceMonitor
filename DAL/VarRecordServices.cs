@@ -38,7 +38,6 @@ namespace DAL
 
         #endregion
 
-
         #region 根据时间查询历史趋势
         public DataTable GetHistoryDataByDateTime(string varName, DateTime startTime, DateTime endTime)
         {
@@ -61,8 +60,7 @@ namespace DAL
         }
 
         #endregion
-
-
+        
         #region 根据时间区间批量查询历史记录
         public DataTable GetHistoryDataByTimeArea(List<Variables> varList, DateTime endTime, string reportType)
         {
@@ -101,7 +99,6 @@ namespace DAL
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -115,7 +112,16 @@ namespace DAL
             ConnectionString = ConfigurationManager.ConnectionStrings["connString"].ToString(),
             DbType = SqlSugar.DbType.SqlServer,
             IsAutoCloseConnection = true
-        });
+        },
+            Db =>
+            {
+                Db.Aop.OnLogExecuting = (sql, pars) =>
+                {
+                    Console.WriteLine(sql);
+                };
+            });
+        
+        
 
         #endregion
 
@@ -124,10 +130,18 @@ namespace DAL
             DataTable dt = null;
             dt = Db.Queryable<VarRecord>().Where(it=>varNameList.Contains(it.VarName))
                 .Where(it=>it.InsertTime.Second==0 && it.InsertTime.Minute==0)
+                .WhereIF(reportType == "班报表", it => it.InsertTime <= SqlFunc.DateAdd(startTime, 8, DateType.Hour) && it.InsertTime >= startTime)
+                .WhereIF(reportType == "日报表", it => it.InsertTime <= SqlFunc.DateAdd(startTime, 1, DateType.Day) && it.InsertTime >= startTime)
+                .WhereIF(reportType == "周报表", it => it.InsertTime <= SqlFunc.DateAdd(startTime, 1, DateType.Weekday) && it.InsertTime >= startTime)
+                .WhereIF(reportType == "月报表", it => it.InsertTime <= SqlFunc.DateAdd(startTime, 1, DateType.Month) && it.InsertTime >= startTime)
                 .OrderBy(st=>st.InsertTime,OrderByType.Asc)
                 .ToPivotTable(it => it.VarName, it => it.InsertTime, it => it.Sum(x => x.VarValue));
-
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dt.Rows[i][0] = Convert.ToDateTime(dt.Rows[i][0]).ToString("yyyy-MM-dd HH:mm");
+            }
             return dt;
         }
     }
 }
+    

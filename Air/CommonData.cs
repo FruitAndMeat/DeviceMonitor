@@ -80,7 +80,7 @@ namespace Air
         public const int RecordCount = 60;
 
         #endregion
-
+        
 
         /// <summary>线程专用数据写入的标志位</summary>
         public static bool IsWriteing=false;
