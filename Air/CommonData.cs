@@ -90,6 +90,7 @@ namespace Air
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
 
+        /// <summary>刷新UI的全局委托</summary>
         public static Action UpdateUI;
 
         public static event UpdateAlarmDelegate update;

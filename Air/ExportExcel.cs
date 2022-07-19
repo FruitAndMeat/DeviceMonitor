@@ -10,7 +10,7 @@ using NPOI.SS.UserModel;
 
 namespace Air
 {
-    class ExportExcel
+    public  class ExportExcel
     {
         private HSSFWorkbook workBook;
         private ISheet workSheet;
@@ -31,6 +31,7 @@ namespace Air
 
         }
 
+        
 
         /// <summary>
         /// 保存文件到指定位置（待优化）
@@ -48,6 +49,14 @@ namespace Air
                 {throw;}
             finally
                 {file.Close();}
+        }
+        #endregion
+
+
+        #region 标题栏
+        private void CreateTitle()
+        {
+
         }
         #endregion
     }

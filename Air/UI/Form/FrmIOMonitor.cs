@@ -45,8 +45,9 @@ namespace Air
                         }
                     }
                 }
-
-                UIMessageBox.ShowSuccess("修改成功");
+                //此处加上弹框显示会阻碍线程 控件值跳动。
+                //UIMessageBox.ShowSuccess("修改成功");
+                ShowSuccessTip("修改变量成功:"+value.ToString());
             }
             catch (Exception ex)
             {
@@ -55,6 +56,9 @@ namespace Air
             finally { CommonData.IsWriteing = false; }
         }
 
+        /// <summary>
+        /// 刷新UI的方法。
+        /// </summary>
        public void RefreshUI()
         {
             try
@@ -83,12 +87,7 @@ namespace Air
             catch { }
         }
 
-        //定时刷新界面
-        private void TimerRefresh_Tick(object sender, EventArgs e)
-        {
-            
-
-        }
+        
 
         //界面加载时，将控件添加到List集合中
         private void FrmIOMonitor_Load(object sender, EventArgs e)
@@ -119,7 +118,6 @@ namespace Air
             CommonData.UpdateUI = new Action(RefreshUI);
 
             RefreshUI();
-            //TimerRefresh_Tick(null, null);
         }
 
         private void btnStart1_Click(object sender, EventArgs e)
@@ -180,6 +178,11 @@ namespace Air
         private void swh2_4_Click(object sender, EventArgs e)
         {
             SetBoolValue(sender, ((UISwitch)sender).Active);
+        }
+
+        private void FrmIOMonitor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CommonData.UpdateUI -= RefreshUI;
         }
     }
 }

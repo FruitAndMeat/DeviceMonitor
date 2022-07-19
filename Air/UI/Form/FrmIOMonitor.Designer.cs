@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.GrpMotor1 = new Sunny.UI.UIGroupBox();
             this.btnStop1 = new Sunny.UI.UIButton();
             this.btnStart1 = new Sunny.UI.UIButton();
@@ -94,7 +93,6 @@
             this.uiLabel25 = new Sunny.UI.UILabel();
             this.swh1_1 = new Sunny.UI.UISwitch();
             this.uiLabel23 = new Sunny.UI.UILabel();
-            this.TimerRefresh = new Sunny.UI.UIMillisecondTimer(this.components);
             this.GrpMotor1.SuspendLayout();
             this.GrpMotor2.SuspendLayout();
             this.GrpValve1.SuspendLayout();
@@ -1034,11 +1032,6 @@
             this.uiLabel23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uiLabel23.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             // 
-            // TimerRefresh
-            // 
-            this.TimerRefresh.Interval = 300;
-            this.TimerRefresh.Tick += new System.EventHandler(this.TimerRefresh_Tick);
-            // 
             // FrmIOMonitor
             // 
             this.AllowShowTitle = false;
@@ -1047,12 +1040,15 @@
             this.Controls.Add(this.GrpValve1);
             this.Controls.Add(this.GrpMotor2);
             this.Controls.Add(this.GrpMotor1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.Name = "FrmIOMonitor";
             this.Padding = new System.Windows.Forms.Padding(0);
             this.ShowTitle = false;
+            this.Style = Sunny.UI.UIStyle.Custom;
             this.TagString = "A";
             this.Text = "FrmIOMonitor";
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 800, 450);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmIOMonitor_FormClosing);
             this.Load += new System.EventHandler(this.FrmIOMonitor_Load);
             this.GrpMotor1.ResumeLayout(false);
             this.GrpMotor2.ResumeLayout(false);
@@ -1128,6 +1124,5 @@
         private Sunny.UI.UILabel uiLabel25;
         private Sunny.UI.UISwitch swh1_1;
         private Sunny.UI.UILabel uiLabel23;
-        private Sunny.UI.UIMillisecondTimer TimerRefresh;
     }
 }

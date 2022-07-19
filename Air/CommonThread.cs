@@ -60,7 +60,7 @@ namespace Air
                 {
                     CommonData.UpdateUI.Invoke();
                 }
-                Thread.Sleep(300);
+                Thread.Sleep(500);
             }
         }
 
