@@ -73,6 +73,8 @@ namespace DAL
                 conn.Close();
             }
         }
+        
+
 
         /// <summary>
         /// 执行结果集查询，里面有多张表
@@ -80,11 +82,11 @@ namespace DAL
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">SQL参数数组</param>
         /// <returns></returns>
-        public static DataSet GetDataSet(string sql,SqlParameter[] parameters)
+        public  static DataSet GetDataSet(string sql, SqlParameter[] parameters)
         {
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand(sql, conn);
-            if (parameters!=null)
+            if (parameters != null)
             {
                 cmd.Parameters.AddRange(parameters);
             }

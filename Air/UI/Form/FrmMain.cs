@@ -143,6 +143,7 @@ namespace Air
         private void OpenWindow(UIForm frm)
         {
             frm.TopLevel = false;
+            
             frm.Dock = DockStyle.Fill;
             frm.Parent = this.mainPanel;
             frm.Show();

@@ -19,20 +19,18 @@ namespace DAL
         }
         private Device device;
         byte slaveAddress = 1;
-        //private Socket socket;
         private TcpClient tcpClient;
         public IModbusMaster master;
 
 
         #region 初始化连接
+
         private void Connect()
         {
             this.slaveAddress = Convert.ToByte(device.DeviceID);
             IPEndPoint ip = new IPEndPoint(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
             tcpClient = new TcpClient();
             tcpClient.Connect(ip);
-            //socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //socket.Connect(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
             master = new ModbusFactory().CreateMaster(tcpClient);
         }
 
