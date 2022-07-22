@@ -67,6 +67,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -142,12 +143,6 @@
     </Compile>
     <Compile Include="UI\Form\FrmHardwareConfig.Designer.cs">
       <DependentUpon>FrmHardwareConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Form\FrmHome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Form\FrmHome.Designer.cs">
-      <DependentUpon>FrmHome.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Form\FrmIOMonitor.cs">
       <SubType>Form</SubType>
@@ -254,9 +249,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form\FrmHardwareConfig.resx">
       <DependentUpon>FrmHardwareConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Form\FrmHome.resx">
-      <DependentUpon>FrmHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form\FrmIOMonitor.resx">
       <DependentUpon>FrmIOMonitor.cs</DependentUpon>

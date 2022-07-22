@@ -90,13 +90,7 @@ namespace Air
             SetEnable(sender);
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmHome") == false)
-            {
-                OpenWindow(new FrmHome());
-            }
-        }
+        
         //主窗体加载事件
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -372,8 +366,7 @@ namespace Air
             CommonData.UpdateAlarm();
         }
 
+        
         #endregion
-
-
     }
 }

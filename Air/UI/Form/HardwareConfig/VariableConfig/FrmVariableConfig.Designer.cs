@@ -159,6 +159,9 @@
             this.dgvVariable.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.dgvVariable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvVariable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvVariable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVariable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             this.dgvVariable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -205,6 +208,7 @@
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvVariable.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvVariable.RowHeadersVisible = false;
+            this.dgvVariable.RowHeight = 0;
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -216,6 +220,8 @@
             this.dgvVariable.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvVariable.SelectedIndex = -1;
             this.dgvVariable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVariable.ShowGridLine = false;
+            this.dgvVariable.ShowRect = false;
             this.dgvVariable.Size = new System.Drawing.Size(1044, 412);
             this.dgvVariable.TabIndex = 4;
             this.dgvVariable.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);

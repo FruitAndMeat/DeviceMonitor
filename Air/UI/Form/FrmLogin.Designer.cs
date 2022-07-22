@@ -45,16 +45,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(750, 450);
+            this.ControlBox = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LoginImage = Sunny.UI.UILoginForm.UILoginImage.Login4;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmLogin";
             this.Password = "123456";
+            this.ShowInTaskbar = true;
             this.SubText = "一个小小的项目";
             this.Text = "登录窗口";
             this.Title = "XXXX设备监测系统";
+            this.TopMost = true;
             this.UserName = "10001";
-            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 750, 450);
             this.ButtonLoginClick += new System.EventHandler(this.FrmLogin_ButtonLoginClick);
-            this.OnLogin += new Sunny.UI.UILoginForm.OnLoginHandle(this.FrmLogin_OnLogin);
             this.ResumeLayout(false);
 
         }

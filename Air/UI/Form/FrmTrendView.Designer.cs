@@ -83,8 +83,8 @@
             // uiSplitContainer1.Panel2
             // 
             this.uiSplitContainer1.Panel2.Controls.Add(this.uiSplitContainer2);
-            this.uiSplitContainer1.Size = new System.Drawing.Size(1280, 533);
-            this.uiSplitContainer1.SplitterDistance = 185;
+            this.uiSplitContainer1.Size = new System.Drawing.Size(1352, 682);
+            this.uiSplitContainer1.SplitterDistance = 195;
             this.uiSplitContainer1.SplitterWidth = 11;
             this.uiSplitContainer1.TabIndex = 0;
             this.uiSplitContainer1.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -98,7 +98,7 @@
             this.btnCancel.Location = new System.Drawing.Point(10, 439);
             this.btnCancel.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(169, 35);
+            this.btnCancel.Size = new System.Drawing.Size(179, 35);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消选择";
             this.btnCancel.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -114,7 +114,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(10, 484);
             this.btnUpdate.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(169, 35);
+            this.btnUpdate.Size = new System.Drawing.Size(179, 35);
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "实时趋势更新";
             this.btnUpdate.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -130,7 +130,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(10, 394);
             this.btnConfirm.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(169, 35);
+            this.btnConfirm.Size = new System.Drawing.Size(179, 35);
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "确定";
             this.btnConfirm.TipsFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -157,7 +157,7 @@
             this.GrpVarSelect.Name = "GrpVarSelect";
             this.GrpVarSelect.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
             this.GrpVarSelect.SelectedIndexes = ((System.Collections.Generic.List<int>)(resources.GetObject("GrpVarSelect.SelectedIndexes")));
-            this.GrpVarSelect.Size = new System.Drawing.Size(166, 287);
+            this.GrpVarSelect.Size = new System.Drawing.Size(176, 287);
             this.GrpVarSelect.TabIndex = 1;
             this.GrpVarSelect.Text = "变量选择";
             this.GrpVarSelect.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -176,7 +176,7 @@
             this.cmbTrendArea.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbTrendArea.Name = "cmbTrendArea";
             this.cmbTrendArea.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmbTrendArea.Size = new System.Drawing.Size(166, 29);
+            this.cmbTrendArea.Size = new System.Drawing.Size(176, 29);
             this.cmbTrendArea.TabIndex = 0;
             this.cmbTrendArea.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbTrendArea.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -195,7 +195,7 @@
             this.cmbTrendType.MinimumSize = new System.Drawing.Size(63, 0);
             this.cmbTrendType.Name = "cmbTrendType";
             this.cmbTrendType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cmbTrendType.Size = new System.Drawing.Size(166, 29);
+            this.cmbTrendType.Size = new System.Drawing.Size(176, 29);
             this.cmbTrendType.TabIndex = 0;
             this.cmbTrendType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmbTrendType.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -225,8 +225,8 @@
             this.uiSplitContainer2.Panel2.Controls.Add(this.BtnQuery);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel3);
             this.uiSplitContainer2.Panel2.Controls.Add(this.uiLabel2);
-            this.uiSplitContainer2.Size = new System.Drawing.Size(1082, 531);
-            this.uiSplitContainer2.SplitterDistance = 470;
+            this.uiSplitContainer2.Size = new System.Drawing.Size(1144, 680);
+            this.uiSplitContainer2.SplitterDistance = 601;
             this.uiSplitContainer2.SplitterWidth = 1;
             this.uiSplitContainer2.TabIndex = 0;
             this.uiSplitContainer2.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
@@ -235,16 +235,23 @@
             // 
             this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
             chartArea1.AlignmentOrientation = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal;
+            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisX.Interval = 3D;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
             chartArea1.AxisX.LabelStyle.Format = "yyyy-MM-dd HH:mm:ss";
             chartArea1.AxisX.LabelStyle.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea1.AxisX.MajorGrid.Interval = 3D;
             chartArea1.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
             chartArea1.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             chartArea1.AxisX.Title = "时间";
             chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             chartArea1.AxisX2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
             chartArea1.AxisY.MajorGrid.Enabled = false;
             chartArea1.AxisY.MajorGrid.Interval = 0D;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             chartArea1.AxisY.Maximum = 400D;
             chartArea1.AxisY.MaximumAutoSize = 100F;
             chartArea1.AxisY.Minimum = 0D;
@@ -252,6 +259,7 @@
             chartArea1.AxisY.Title = "电压值";
             chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+            chartArea1.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             chartArea1.AxisY2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Stacked;
             chartArea1.AxisY2.Title = "电流与输出频率值";
             chartArea1.AxisY2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -271,7 +279,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1082, 470);
+            this.chart1.Size = new System.Drawing.Size(1144, 601);
             this.chart1.TabIndex = 0;
             this.chart1.GetToolTipText += new System.EventHandler<System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs>(this.chart1_GetToolTipText);
             // 
@@ -391,7 +399,7 @@
             // 
             this.AllowShowTitle = false;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1280, 533);
+            this.ClientSize = new System.Drawing.Size(1352, 682);
             this.Controls.Add(this.uiSplitContainer1);
             this.Name = "FrmTrendView";
             this.Padding = new System.Windows.Forms.Padding(0);
