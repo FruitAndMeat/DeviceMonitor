@@ -23,9 +23,28 @@ namespace Air
 
         private void FrmLogin_ButtonLoginClick(object sender, EventArgs e)
         {
-            Admins objAdmin = new Admins() { LoginID = Convert.ToInt32(UserName), LoginPwd = Password };
+            
+            GetAdmin();
 
-            objAdmin = adminServices.AdminLogin(objAdmin);
+            #region 注释掉的原代码
+            //objAdmin = adminServices.AdminLogin(objAdmin);
+            //if (objAdmin != null)
+            //{
+            //    this.DialogResult = DialogResult.OK;
+            //    CommonData.SysAdmin = objAdmin;
+            //}
+            //else
+            //{
+            //    UIMessageBox.Show("登录失败,请检查用户名及登录密码！", "登陆提示");
+            //}
+            #endregion
+        }
+
+        async void GetAdmin()
+        {
+            Admins objAdmin = new Admins() { LoginID = Convert.ToInt32(UserName), LoginPwd = Password };
+            this.pgbar.Visible = true;
+            await adminServices.AdminLoginAsync(objAdmin);
             if (objAdmin != null)
             {
                 this.DialogResult = DialogResult.OK;
@@ -35,6 +54,8 @@ namespace Air
             {
                 UIMessageBox.Show("登录失败,请检查用户名及登录密码！", "登陆提示");
             }
+            pgbar.Visible = false;
+
         }
     }
 }

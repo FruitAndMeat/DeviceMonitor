@@ -17,7 +17,7 @@ namespace DAL
         /// </summary>
         /// <param name="objAdmin">封装好的登录对象</param>
         /// <returns>返回的完整登录对象</returns>
-        public  Admins AdminLogin(Admins objAdmin)
+        public async Task<Admins> AdminLoginAsync(Admins objAdmin)
         {
             string sql = $"select LoginID,LoginPwd,LoginName,Gender,RankRemark " +
                 "from Admins inner join Ranks on Ranks.RankID = Admins.RankID " +
@@ -26,7 +26,7 @@ namespace DAL
                 new SqlParameter("@LoginID",objAdmin.LoginID),
                 new SqlParameter("@LoginPwd",objAdmin.LoginPwd)
             };
-            DataSet ds =  SQLHelper.GetDataSet(sql, parameters);
+            DataSet ds = await SQLHelper.GetDataSetAsync(sql, parameters);
             if (ds!=null&&ds.Tables.Count>0&&ds.Tables[0].Rows.Count>0)
             {
                 objAdmin.LoginID = Convert.ToInt32(ds.Tables[0].Rows[0]["LoginID"]);

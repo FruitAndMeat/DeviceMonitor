@@ -109,6 +109,38 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// 执行结果集查询，里面有多张表
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="parameters">SQL参数数组</param>
+        /// <returns></returns>
+        public static async Task<DataSet> GetDataSetAsync(string sql, SqlParameter[] parameters)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            if (parameters != null)
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            try
+            {
+               await conn.OpenAsync();
+                da.Fill(ds);
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog("执行DAL.SQLHelper.GetDataSet方法出现错误，错误信息：" + ex.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         /// <summary>
         /// 启用事务提交多条带参数的SQL语句

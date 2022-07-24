@@ -27,7 +27,7 @@ namespace Air
             while (true)
             {
                 
-                if (CommonData.IsWriteing == false)
+                if (true)
                 {
                     foreach (StoreArea item in CommonData.storeAreaList)
                     {

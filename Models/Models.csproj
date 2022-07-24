@@ -44,24 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admins.cs" />
-    <Compile Include="Alarm.cs" />
-    <Compile Include="AlarmRecord.cs" />
+    <Compile Include="DataBase\Admins.cs" />
+    <Compile Include="DataBase\Alarm.cs" />
+    <Compile Include="DataBase\AlarmRecord.cs" />
     <Compile Include="Enum\AlarmType.cs" />
     <Compile Include="Enum\AlarmState.cs" />
-    <Compile Include="Device.cs" />
+    <Compile Include="DataBase\Device.cs" />
     <Compile Include="Enum\PLCDataType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ranks.cs" />
+    <Compile Include="DataBase\Ranks.cs" />
     <Compile Include="Enum\RegisterType.cs" />
     <Compile Include="Enum\ReportType.cs" />
-    <Compile Include="StoreArea.cs" />
-    <Compile Include="VarAlarm.cs" />
-    <Compile Include="Variables.cs" />
-    <Compile Include="VarRecord.cs" />
+    <Compile Include="DataBase\StoreArea.cs" />
+    <Compile Include="DataBase\VarAlarm.cs" />
+    <Compile Include="DataBase\Variables.cs" />
+    <Compile Include="DataBase\VarRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Equipment\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
