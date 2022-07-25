@@ -26,37 +26,47 @@ namespace Air
         {
             while (true)
             {
-                
-                if (true)
+                foreach (StoreArea item in CommonData.storeAreaList)
                 {
-                    foreach (StoreArea item in CommonData.storeAreaList)
+                    startAddress = item.startAddr;
+                    switch (item.registerType)
                     {
-                        startAddress = item.startAddr;
-                        switch (item.registerType)
-                        {
-                            case RegisterType.CoilStatus:
-                                //读取
-                                bool[] bools= CommonData.objMod.ReadCoils((ushort)startAddress, (ushort)(item.length));
+                        case RegisterType.CoilStatus:
+                            //读取
+                            try
+                            {
+                                bool[] bools = CommonData.objMod.ReadCoils((ushort)startAddress, (ushort)(item.length));
                                 //解析
-                                AnalyseData_0x(bools);
-                                break;
-                            case RegisterType.InputStatus:
-                                break;
-                            case RegisterType.HoldingRegister:
-                                ushort[] datas= CommonData.objMod.ReadHoldingRegisters((ushort)startAddress, (ushort)item.length);
+                                if (bools != null && bools.Length == item.length)
+                                {
+                                    AnalyseData_0x(bools);
+                                }
+                            }
+                            catch { }
+
+                            break;
+                        case RegisterType.InputStatus:
+                            break;
+                        case RegisterType.HoldingRegister:
+                            try
+                            {
+                                ushort[] datas = CommonData.objMod.ReadHoldingRegisters((ushort)startAddress, (ushort)item.length);
                                 //解析
-                                if (datas.Length == item.length)
+                                if (datas != null && datas.Length == item.length)
                                 {
                                     AnalyseData_4x(datas);
                                 }
-                                break;
-                            case RegisterType.InputRegister:
-                                break;
-                        }
+                            }
+                            catch { }
+
+                            break;
+                        case RegisterType.InputRegister:
+                            break;
                     }
                 }
 
-                if (CommonData.UpdateUI!=null)
+
+                if (CommonData.UpdateUI != null)
                 {
                     CommonData.UpdateUI.Invoke();
                 }

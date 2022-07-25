@@ -21,7 +21,7 @@ namespace Air
         /// <summary>全局通讯设备信息 </summary>
         public static Device objDevice = null;
 
-        public static Modbus objMod = null;
+        public static DeviceServices objMod = null;
 
         #region 相关配置文件路径
 
@@ -86,13 +86,14 @@ namespace Air
         
 
         /// <summary>线程专用数据写入的标志位</summary>
-        public static bool IsWriteing=false;
+       // public static bool IsWriteing=false;
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
 
         /// <summary>刷新UI的全局委托</summary>
         public static Action UpdateUI;
 
+        /// <summary>刷新报警的事件</summary>
         public static event UpdateAlarmDelegate update;
 
         public static void UpdateAlarm()

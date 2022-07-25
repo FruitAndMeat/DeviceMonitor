@@ -10,28 +10,48 @@ using System.Net;
 
 namespace DAL
 {
-    public class Modbus
+    public class DeviceServices
     {
-        public Modbus(Device device)
+        public DeviceServices(Device device)
         {
             this.device = device;
-            Connect();
-        }
-        private Device device;
-        byte slaveAddress = 1;
-        private TcpClient tcpClient;
-        public IModbusMaster master;
+            try
+            {
+                ConnectAsync();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            
+        }
+
+        #region Field&Property
+
+        private Device device;
+        private byte slaveAddress = 1;
+        private TcpClient tcpClient;
+        private IModbusMaster master;
+
+        #endregion
 
         #region 初始化连接
 
-        private void Connect()
+        private async void ConnectAsync()
         {
             this.slaveAddress = Convert.ToByte(device.DeviceID);
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
             tcpClient = new TcpClient();
-            tcpClient.Connect(ip);
-            master = new ModbusFactory().CreateMaster(tcpClient);
+            try
+            {
+                await tcpClient.ConnectAsync(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
+                master = new ModbusFactory().CreateMaster(tcpClient);
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+            }
+            
         }
 
         #endregion
@@ -45,12 +65,8 @@ namespace DAL
         {
             try
             {
-                if (master != null)
-                {   var s=master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress -1), length);
-                    return s;
-                }
-                else
-                    return null;
+               var s=master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress -1), length);
+               return s;
             }
             catch (Exception ex)
             {
@@ -67,13 +83,8 @@ namespace DAL
         {
             try
             {
-                if (master != null)
-                {
-                    var s= master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), length);
+                var s= master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), length);
                     return s;
-                }
-                else
-                    return null;
             }
             catch (Exception ex)
             {
@@ -90,14 +101,8 @@ namespace DAL
         {
             try
             {
-                
-                if (master != null)
-                {
-                    master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
-                    return true;
-                }
-                else
-                    return false;
+                 master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
+                 return true;
             }
             catch (Exception ex)
             {
@@ -112,14 +117,8 @@ namespace DAL
         public bool WriteMultipleRegisters(ushort startAddress, ushort[] datas)
         {
             try
-            {
-                if (master != null)
-                {
-                    master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
+            { master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
                     return true;
-                }
-                else
-                    return false;
             }
             catch (Exception ex)
             {
@@ -132,17 +131,12 @@ namespace DAL
         /// <param name="coilAddress">线圈地址</param>
         /// <param name="value">线圈值</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public bool WriteSingleCoil(ushort coilAddress,bool value)
+        public bool WriteSingleCoil(ushort coilAddress, bool value)
         {
             try
             {
-                if (master != null)
-                {
-                    master.WriteSingleCoil(slaveAddress, Convert.ToUInt16(coilAddress -1), value);
-                    return true;
-                }
-                else
-                    return false;
+                master.WriteSingleCoil(slaveAddress, Convert.ToUInt16(coilAddress - 1), value);
+                return true;
             }
             catch (Exception ex)
             {
@@ -159,13 +153,8 @@ namespace DAL
         {
             try
             {
-                if (master != null)
-                {
                     master.WriteSingleRegister(slaveAddress, Convert.ToUInt16(registerAddress-1), value);
                     return true;
-                }
-                else
-                    return false;
             }
             catch (Exception ex)
             {

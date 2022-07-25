@@ -104,14 +104,16 @@ namespace Air
             //打开通讯要在初始化之后(否则，commondata里的objDevice无信息)
             try
             {
-                CommonData.objMod = new Modbus(CommonData.objDevice);
+                CommonData.objMod = new DeviceServices(CommonData.objDevice);
                 CommonData.CommOk = true;
                 //一秒扫描一次，内部一分钟保存一次
                 InsertData insertData = new InsertData(1000);
                 objComm.t.Start();
             }
-            catch
-            { CommonData.CommOk = false; }
+            catch(Exception ex)
+            { CommonData.CommOk = false;
+                UIMessageBox.ShowError(ex.Message);
+            }
 
             if (CloseWindow("FrmIOMonitor") == false)
             {

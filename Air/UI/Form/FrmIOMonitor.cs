@@ -22,7 +22,6 @@ namespace Air
 
         void  SetBoolValue(object sender,bool value)
         {
-            CommonData.IsWriteing = true;
             try
             {
                 if (sender is UIButton)
@@ -45,15 +44,12 @@ namespace Air
                         }
                     }
                 }
-                //此处加上弹框显示会阻碍线程 控件值跳动。
-                //UIMessageBox.ShowSuccess("修改成功");
                 ShowSuccessTip("修改变量成功:"+value.ToString());
             }
             catch (Exception ex)
             {
                 UIMessageBox.ShowError("修改变量出错" + ex.Message);
             }
-            finally { CommonData.IsWriteing = false; }
         }
 
         /// <summary>

@@ -23,21 +23,7 @@ namespace Air
 
         private void FrmLogin_ButtonLoginClick(object sender, EventArgs e)
         {
-            
             GetAdmin();
-
-            #region 注释掉的原代码
-            //objAdmin = adminServices.AdminLogin(objAdmin);
-            //if (objAdmin != null)
-            //{
-            //    this.DialogResult = DialogResult.OK;
-            //    CommonData.SysAdmin = objAdmin;
-            //}
-            //else
-            //{
-            //    UIMessageBox.Show("登录失败,请检查用户名及登录密码！", "登陆提示");
-            //}
-            #endregion
         }
 
         async void GetAdmin()
