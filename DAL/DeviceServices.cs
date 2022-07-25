@@ -24,7 +24,7 @@ namespace DAL
 
                 throw ex;
             }
-            
+
         }
 
         #region Field&Property
@@ -51,7 +51,7 @@ namespace DAL
             {
                 //throw ex;
             }
-            
+
         }
 
         #endregion
@@ -61,12 +61,16 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="length">读取长度</param>
         /// <returns>读取结果</returns>
-        public bool[] ReadCoils(ushort startAddress,ushort length)
+        public bool[] ReadCoils(ushort startAddress, ushort length)
         {
+            bool[] bools = null;
             try
             {
-               var s=master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress -1), length);
-               return s;
+                if (master != null)
+                {
+                    bools = master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress - 1), length);
+                }
+                return bools;
             }
             catch (Exception ex)
             {
@@ -81,10 +85,14 @@ namespace DAL
         /// <returns>读取结果</returns>
         public ushort[] ReadHoldingRegisters(ushort startAddress, ushort length)
         {
+            ushort[] ushorts = null;
             try
             {
-                var s= master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), length);
-                    return s;
+                if (master != null)
+                {
+                    ushorts = master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress - 1), length);
+                }
+                return ushorts;
             }
             catch (Exception ex)
             {
@@ -97,12 +105,11 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="datas">寄存器值集合</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public bool WriteMultiCoils(ushort startAddress, bool[] datas)
+        public void WriteMultiCoils(ushort startAddress, bool[] datas)
         {
             try
             {
-                 master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
-                 return true;
+                master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress - 1), datas);
             }
             catch (Exception ex)
             {
@@ -114,11 +121,11 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="datas">数据数组</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public bool WriteMultipleRegisters(ushort startAddress, ushort[] datas)
+        public void WriteMultipleRegisters(ushort startAddress, ushort[] datas)
         {
             try
-            { master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress -1), datas);
-                    return true;
+            {
+                master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress - 1), datas);
             }
             catch (Exception ex)
             {
@@ -131,12 +138,11 @@ namespace DAL
         /// <param name="coilAddress">线圈地址</param>
         /// <param name="value">线圈值</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public bool WriteSingleCoil(ushort coilAddress, bool value)
+        public void WriteSingleCoil(ushort coilAddress, bool value)
         {
             try
             {
                 master.WriteSingleCoil(slaveAddress, Convert.ToUInt16(coilAddress - 1), value);
-                return true;
             }
             catch (Exception ex)
             {
@@ -149,12 +155,11 @@ namespace DAL
         /// <param name="registerAddress">寄存器地址</param>
         /// <param name="value">寄存器值</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public bool WriteSingleRegister(ushort registerAddress, ushort value)
+        public void WriteSingleRegister(ushort registerAddress, ushort value)
         {
             try
             {
-                    master.WriteSingleRegister(slaveAddress, Convert.ToUInt16(registerAddress-1), value);
-                    return true;
+                master.WriteSingleRegister(slaveAddress, Convert.ToUInt16(registerAddress - 1), value);
             }
             catch (Exception ex)
             {
