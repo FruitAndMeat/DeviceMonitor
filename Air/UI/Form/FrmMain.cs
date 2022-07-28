@@ -241,6 +241,7 @@ namespace Air
 
                 
         #region 初始化报警
+        /// <summary>变量缓存值</summary>
         private Dictionary<string, float> LastValue = new Dictionary<string, float>();
         private void InitialAlarm()
         {
