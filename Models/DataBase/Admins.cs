@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     /// <summary>
     /// 用户实体类
@@ -18,7 +12,7 @@ namespace Models
         /// <summary>
         /// 登录密码
         /// </summary>
-        public string  LoginPwd { get; set; }
+        public string LoginPwd { get; set; }
         /// <summary>
         /// 用户名称
         /// </summary>

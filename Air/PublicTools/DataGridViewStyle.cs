@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
+//using System.Linq;
+using System.Windows.Forms;
 
 namespace Air
 {
@@ -15,8 +13,7 @@ namespace Air
         /// <summary>
         /// 普通的样式
         /// </summary>        
-        public void DgvStyle1(DataGridView dgv)
-        {
+        public void DgvStyle1(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionForeColor = System.Drawing.Color.Blue;
@@ -35,8 +32,7 @@ namespace Air
         /// 凹凸样式
         /// </summary>
         /// 需要手动设置this.RowTemplate.DividerHeight = 2;    
-        public void DgvStyle2(DataGridView dgv)
-        {
+        public void DgvStyle2(DataGridView dgv) {
             dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             //列标题的边框样式
             dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
@@ -55,12 +51,11 @@ namespace Air
         /// <summary>
         /// 参数设置
         /// </summary>        
-        public void DgvStyle3(DataGridView dgv)
-        {
+        public void DgvStyle3(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(48)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(168)))), ((int)(((byte)(223)))));
-           
+
             //默认的行样式
             dgv.RowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(71)))));
             dgv.RowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(168)))), ((int)(((byte)(223)))));
@@ -69,13 +64,12 @@ namespace Air
             dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
             //列标题的宽度
             dgv.ColumnHeadersHeight = 28;
-            
+
         }
         /// <summary>
         /// 数据报表
         /// </summary>        
-        public void DgvStyle4(DataGridView dgv)
-        {
+        public void DgvStyle4(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(48)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(48)))));
@@ -92,8 +86,7 @@ namespace Air
         /// 故障报警
         /// </summary>
         /// <param name="dgv"></param>
-        public void DgvStyle5(DataGridView dgv)
-        {
+        public void DgvStyle5(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(124)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(124)))));
@@ -110,8 +103,7 @@ namespace Air
         /// <summary>
         /// 报警记录
         /// </summary>        
-        public void DgvStyle6(DataGridView dgv)
-        {
+        public void DgvStyle6(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(48)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(29)))), ((int)(((byte)(48)))));
@@ -128,8 +120,7 @@ namespace Air
         /// 实时报警
         /// </summary>
         /// <param name="dgv"></param>
-        public void DgvStyle7(DataGridView dgv)
-        {
+        public void DgvStyle7(DataGridView dgv) {
             //奇数行的背景色
             dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(124)))));
             dgv.AlternatingRowsDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(124)))));
@@ -148,10 +139,8 @@ namespace Air
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="e"></param>
-        public  void DgvRowPostPaint(DataGridView dgv, DataGridViewRowPostPaintEventArgs e)
-        {
-            try
-            {
+        public void DgvRowPostPaint(DataGridView dgv, DataGridViewRowPostPaintEventArgs e) {
+            try {
                 //添加行号 
                 SolidBrush v_SolidBrush = new SolidBrush(dgv.RowHeadersDefaultCellStyle.ForeColor);
                 int v_LineNo = 0;
@@ -159,8 +148,7 @@ namespace Air
                 string v_Line = v_LineNo.ToString();
                 e.Graphics.DrawString(v_Line, e.InheritedRowStyle.Font, v_SolidBrush, e.RowBounds.Location.X + 15, e.RowBounds.Location.Y + 5);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 MessageBox.Show("添加行号时发生错误，错误信息：" + ex.Message, "操作失败");
             }
         }
@@ -169,10 +157,8 @@ namespace Air
         /// </summary>
         /// <param name="dgv"></param>
         /// <param name="e"></param>
-        public static void DgvRowPostPaint2(DataGridView dgv, DataGridViewRowPostPaintEventArgs e)
-        {
-            try
-            {
+        public static void DgvRowPostPaint2(DataGridView dgv, DataGridViewRowPostPaintEventArgs e) {
+            try {
                 //添加行号 
                 SolidBrush v_SolidBrush = new SolidBrush(dgv.RowHeadersDefaultCellStyle.ForeColor);
                 int v_LineNo = 0;
@@ -180,8 +166,7 @@ namespace Air
                 string v_Line = v_LineNo.ToString();
                 e.Graphics.DrawString(v_Line, e.InheritedRowStyle.Font, v_SolidBrush, e.RowBounds.Location.X + 15, e.RowBounds.Location.Y + 5);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 MessageBox.Show("添加行号时发生错误，错误信息：" + ex.Message, "操作失败");
             }
         }

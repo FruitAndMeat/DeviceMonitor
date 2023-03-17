@@ -40,11 +40,11 @@
             this.btnAlarmView = new Sunny.UI.UIButton();
             this.btnParamSet = new Sunny.UI.UIButton();
             this.btnIOMonitor = new Sunny.UI.UIButton();
-            this.lblTime = new Sunny.UI.UILabel();
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.lblTitle = new Sunny.UI.UILabel();
             this.mainPanel = new Sunny.UI.UIPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblTime = new Sunny.UI.UILabel();
             this.BtnPanel.SuspendLayout();
             this.uiPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -104,9 +104,11 @@
             // 
             // lblUser
             // 
+            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUser.BackColor = System.Drawing.Color.Transparent;
             this.lblUser.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblUser.Location = new System.Drawing.Point(1123, 12);
+            this.lblUser.Location = new System.Drawing.Point(1215, 12);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(141, 30);
             this.lblUser.Style = Sunny.UI.UIStyle.LayuiGreen;
@@ -143,9 +145,11 @@
             // 
             // uiLabel2
             // 
+            this.uiLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiLabel2.BackColor = System.Drawing.Color.Transparent;
             this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel2.Location = new System.Drawing.Point(1013, 13);
+            this.uiLabel2.Location = new System.Drawing.Point(1105, 13);
             this.uiLabel2.Name = "uiLabel2";
             this.uiLabel2.Size = new System.Drawing.Size(93, 29);
             this.uiLabel2.Style = Sunny.UI.UIStyle.LayuiGreen;
@@ -284,19 +288,6 @@
             this.btnIOMonitor.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.btnIOMonitor.Click += new System.EventHandler(this.btnIOMonitor_Click);
             // 
-            // lblTime
-            // 
-            this.lblTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.Location = new System.Drawing.Point(1012, 15);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(216, 23);
-            this.lblTime.Style = Sunny.UI.UIStyle.LayuiGreen;
-            this.lblTime.TabIndex = 4;
-            this.lblTime.Text = "2022-5-13 16:27";
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTime.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
-            // 
             // uiPanel1
             // 
             this.uiPanel1.Controls.Add(this.lblTitle);
@@ -319,10 +310,13 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTitle.Location = new System.Drawing.Point(513, 5);
+            this.lblTitle.Location = new System.Drawing.Point(627, 6);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(235, 47);
+            this.lblTitle.Size = new System.Drawing.Size(146, 41);
             this.lblTitle.Style = Sunny.UI.UIStyle.LayuiGreen;
             this.lblTitle.TabIndex = 6;
             this.lblTitle.Text = "界面名称";
@@ -352,6 +346,22 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lblTime
+            // 
+            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTime.Location = new System.Drawing.Point(1160, 15);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(173, 27);
+            this.lblTime.Style = Sunny.UI.UIStyle.LayuiGreen;
+            this.lblTime.TabIndex = 4;
+            this.lblTime.Text = "2022-5-13 16:27";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTime.ZoomScaleRect = new System.Drawing.Rectangle(0, 0, 0, 0);
+            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -375,6 +385,7 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.BtnPanel.ResumeLayout(false);
             this.uiPanel1.ResumeLayout(false);
+            this.uiPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -384,7 +395,6 @@
         private Sunny.UI.UIButton btnIOMonitor;
         private Sunny.UI.UILabel uiLabel2;
         private Sunny.UI.UILabel lblUser;
-        private Sunny.UI.UILabel lblTime;
         private Sunny.UI.UIPanel uiPanel1;
         private Sunny.UI.UILabel lblTitle;
         private Sunny.UI.UIButton btnAbout;
@@ -395,6 +405,7 @@
         private Sunny.UI.UIButton btnParamSet;
         private Sunny.UI.UIPanel mainPanel;
         private System.Windows.Forms.Timer timer1;
+        private Sunny.UI.UILabel lblTime;
     }
 }
 

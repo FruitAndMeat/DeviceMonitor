@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     /// <summary>
     /// 西门子PLC的数据类型

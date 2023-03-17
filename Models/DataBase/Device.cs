@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     /// <summary>
     /// 设备实体类
@@ -32,7 +26,7 @@ namespace Models
         /// </summary>
         public string DeviceRemark { get; set; }
 
-        
+
 
     }
 }

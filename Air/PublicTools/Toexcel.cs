@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
 //using Microsoft.Office.Core;
 using System.Reflection;
+using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Air
@@ -23,39 +20,31 @@ namespace Air
         /// using Excel=Microsoft.Office.Interop.Excel;   
         /// </remarks>   
         /// <returns> </returns>    
-        public bool DataGridviewShowToExcel(DataGridView dgv, bool isShowExcle)
-        {
+        public bool DataGridviewShowToExcel(DataGridView dgv, bool isShowExcle) {
             if (dgv.Rows.Count == 0)
                 return false;
-            try
-            {
+            try {
                 //建立Excel对象    
                 Excel.Application excel = new Excel.Application();
-            excel.Application.Workbooks.Add(true);
-            excel.Visible = isShowExcle;
-            //生成字段名称    
-            for (int i = 0; i < dgv.ColumnCount; i++)
-            {
-                excel.Cells[1, i + 1] = dgv.Columns[i].HeaderText;
-            }
-            //填充数据    
-            for (int i = 0; i < dgv.RowCount; i++)
-            {
-                for (int j = 0; j < dgv.ColumnCount; j++)
-                {
-                    if (dgv[j, i].Value != null)
-                    {
-                            excel.Cells[i + 2, j + 1] = dgv[j, i].Value.ToString();                    
-                    }
-                    else
-                    {
-                        excel.Cells[i + 2, j + 1] = "";
+                excel.Application.Workbooks.Add(true);
+                excel.Visible = isShowExcle;
+                //生成字段名称    
+                for (int i = 0; i < dgv.ColumnCount; i++) {
+                    excel.Cells[1, i + 1] = dgv.Columns[i].HeaderText;
+                }
+                //填充数据    
+                for (int i = 0; i < dgv.RowCount; i++) {
+                    for (int j = 0; j < dgv.ColumnCount; j++) {
+                        if (dgv[j, i].Value != null) {
+                            excel.Cells[i + 2, j + 1] = dgv[j, i].Value.ToString();
+                        }
+                        else {
+                            excel.Cells[i + 2, j + 1] = "";
+                        }
                     }
                 }
             }
-        }
-            catch (Exception)
-            {
+            catch (Exception) {
                 return false;
             }
 
@@ -71,8 +60,7 @@ namespace Air
         /// using System.IO;   
         /// </remarks>   
         /// <param name="dgv"></param>   
-        private void DataGridViewToExcel(DataGridView dgv)
-        {
+        private void DataGridViewToExcel(DataGridView dgv) {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Execl files (*.xls)|*.xls";
             dlg.FilterIndex = 0;
@@ -80,19 +68,15 @@ namespace Air
             dlg.CreatePrompt = true;
             dlg.Title = "保存为Excel文件";
 
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
+            if (dlg.ShowDialog() == DialogResult.OK) {
                 Stream myStream;
                 myStream = dlg.OpenFile();
                 StreamWriter sw = new StreamWriter(myStream, System.Text.Encoding.GetEncoding(-0));
                 string columnTitle = "";
-                try
-                {
+                try {
                     //写入列标题   
-                    for (int i = 0; i < dgv.ColumnCount; i++)
-                    {
-                        if (i > 0)
-                        {
+                    for (int i = 0; i < dgv.ColumnCount; i++) {
+                        if (i > 0) {
                             columnTitle += "/t";
                         }
                         columnTitle += dgv.Columns[i].HeaderText;
@@ -100,13 +84,10 @@ namespace Air
                     sw.WriteLine(columnTitle);
 
                     //写入列内容   
-                    for (int j = 0; j < dgv.Rows.Count; j++)
-                    {
+                    for (int j = 0; j < dgv.Rows.Count; j++) {
                         string columnValue = "";
-                        for (int k = 0; k < dgv.Columns.Count; k++)
-                        {
-                            if (k > 0)
-                            {
+                        for (int k = 0; k < dgv.Columns.Count; k++) {
+                            if (k > 0) {
                                 columnValue += "/t";
                             }
                             if (dgv.Rows[j].Cells[k].Value == null)
@@ -119,12 +100,10 @@ namespace Air
                     sw.Close();
                     myStream.Close();
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     MessageBox.Show(e.ToString());
                 }
-                finally
-                {
+                finally {
                     sw.Close();
                     myStream.Close();
                 }
@@ -142,8 +121,7 @@ namespace Air
         /// using System.Reflection;   
         /// </remarks>   
         /// <param name= "dgv"> DataGridView </param>    
-        public void DataGridViewToExcel1(DataGridView dgv)
-        {
+        public void DataGridViewToExcel1(DataGridView dgv) {
             #region   验证可操作性
 
             //申明保存对话框    
@@ -159,49 +137,41 @@ namespace Air
             //返回文件路径    
             string fileNameString = dlg.FileName;
             //验证strFileName是否为空或值无效    
-            if (fileNameString.Trim() == " ")
-            { return; }
+            if (fileNameString.Trim() == " ") { return; }
             //定义表格内数据的行数和列数    
             int rowscount = dgv.Rows.Count;
             int colscount = dgv.Columns.Count;
             //行数必须大于0    
-            if (rowscount <= 0)
-            {
+            if (rowscount <= 0) {
                 MessageBox.Show("没有数据可供保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //列数必须大于0    
-            if (colscount <= 0)
-            {
+            if (colscount <= 0) {
                 MessageBox.Show("没有数据可供保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //行数不可以大于65536    
-            if (rowscount > 65536)
-            {
+            if (rowscount > 65536) {
                 MessageBox.Show("数据记录数太多(最多不能超过65536条)，不能保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //列数不可以大于255    
-            if (colscount > 255)
-            {
+            if (colscount > 255) {
                 MessageBox.Show("数据记录行数太多，不能保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //验证以fileNameString命名的文件是否存在，如果存在删除它    
             FileInfo file = new FileInfo(fileNameString);
-            if (file.Exists)
-            {
-                try
-                {
+            if (file.Exists) {
+                try {
                     file.Delete();
                 }
-                catch (Exception error)
-                {
+                catch (Exception error) {
                     MessageBox.Show(error.Message, "删除失败 ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -210,8 +180,7 @@ namespace Air
             Excel.Application objExcel = null;
             Excel.Workbook objWorkbook = null;
             Excel.Worksheet objsheet = null;
-            try
-            {
+            try {
                 //申明对象    
                 objExcel = new Excel.Application();
                 objWorkbook = objExcel.Workbooks.Add(Missing.Value);
@@ -221,10 +190,8 @@ namespace Air
 
                 //向Excel中写入表格的表头    
                 int displayColumnsCount = 1;
-                for (int i = 0; i <= dgv.ColumnCount - 1; i++)
-                {
-                    if (dgv.Columns[i].Visible == true)
-                    {
+                for (int i = 0; i <= dgv.ColumnCount - 1; i++) {
+                    if (dgv.Columns[i].Visible == true) {
                         objExcel.Cells[1, displayColumnsCount] = dgv.Columns[i].HeaderText.Trim();
                         displayColumnsCount++;
                     }
@@ -236,22 +203,17 @@ namespace Air
                 //tempProgressBar.Maximum=dgv.RowCount;    
                 //tempProgressBar.Step=1;    
                 //向Excel中逐行逐列写入表格中的数据    
-                for (int row = 0; row <= dgv.RowCount - 1; row++)
-                {
+                for (int row = 0; row <= dgv.RowCount - 1; row++) {
                     //tempProgressBar.PerformStep();    
 
                     displayColumnsCount = 1;
-                    for (int col = 0; col < colscount; col++)
-                    {
-                        if (dgv.Columns[col].Visible == true)
-                        {
-                            try
-                            {
+                    for (int col = 0; col < colscount; col++) {
+                        if (dgv.Columns[col].Visible == true) {
+                            try {
                                 objExcel.Cells[row + 2, displayColumnsCount] = dgv.Rows[row].Cells[col].Value.ToString().Trim();
                                 displayColumnsCount++;
                             }
-                            catch (Exception)
-                            {
+                            catch (Exception) {
 
                             }
 
@@ -265,13 +227,11 @@ namespace Air
                         Missing.Value, Excel.XlSaveAsAccessMode.xlShared, Missing.Value, Missing.Value, Missing.Value,
                         Missing.Value, Missing.Value);
             }
-            catch (Exception error)
-            {
+            catch (Exception error) {
                 MessageBox.Show(error.Message, "警告 ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            finally
-            {
+            finally {
                 //关闭Excel应用    
                 if (objWorkbook != null) objWorkbook.Close(Missing.Value, Missing.Value, Missing.Value);
                 if (objExcel.Workbooks != null) objExcel.Workbooks.Close();
@@ -298,8 +258,7 @@ namespace Air
         /// using Excel=Microsoft.Office.Interop.Excel;
         /// </remarks>
         /// <returns> </returns> 
-        public bool DataGridviewShowToExcel1(DataGridView dgv, bool isShowExcle)
-        {
+        public bool DataGridviewShowToExcel1(DataGridView dgv, bool isShowExcle) {
             if (dgv.Rows.Count == 0)
                 return false;
             //建立Excel对象 
@@ -307,21 +266,16 @@ namespace Air
             excel.Application.Workbooks.Add(true);
             excel.Visible = isShowExcle;
             //生成字段名称 
-            for (int i = 0; i < dgv.ColumnCount; i++)
-            {
+            for (int i = 0; i < dgv.ColumnCount; i++) {
                 excel.Cells[1, i + 1] = dgv.Columns[i].HeaderText;
             }
             //填充数据 
-            for (int i = 0; i < dgv.RowCount - 1; i++)
-            {
-                for (int j = 0; j < dgv.ColumnCount; j++)
-                {
-                    if (dgv[j, i].ValueType == typeof(string))
-                    {
+            for (int i = 0; i < dgv.RowCount - 1; i++) {
+                for (int j = 0; j < dgv.ColumnCount; j++) {
+                    if (dgv[j, i].ValueType == typeof(string)) {
                         excel.Cells[i + 2, j + 1] = "'" + dgv[j, i].Value.ToString();
                     }
-                    else
-                    {
+                    else {
                         excel.Cells[i + 2, j + 1] = dgv[j, i].Value.ToString();
                     }
                 }
@@ -338,8 +292,7 @@ namespace Air
         /// using System.IO;
         /// </remarks>
         /// <param name="dgv"></param>
-        private void DataGridViewToExcel2(DataGridView dgv)
-        {
+        private void DataGridViewToExcel2(DataGridView dgv) {
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "Execl files (*.xls)|*.xls";
             dlg.FilterIndex = 0;
@@ -347,19 +300,15 @@ namespace Air
             dlg.CreatePrompt = true;
             dlg.Title = "保存为Excel文件";
 
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
+            if (dlg.ShowDialog() == DialogResult.OK) {
                 Stream myStream;
                 myStream = dlg.OpenFile();
                 StreamWriter sw = new StreamWriter(myStream, System.Text.Encoding.GetEncoding(-0));
                 string columnTitle = "";
-                try
-                {
+                try {
                     //写入列标题
-                    for (int i = 0; i < dgv.ColumnCount; i++)
-                    {
-                        if (i > 0)
-                        {
+                    for (int i = 0; i < dgv.ColumnCount; i++) {
+                        if (i > 0) {
                             columnTitle += "/t";
                         }
                         columnTitle += dgv.Columns[i].HeaderText;
@@ -367,13 +316,10 @@ namespace Air
                     sw.WriteLine(columnTitle);
 
                     //写入列内容
-                    for (int j = 0; j < dgv.Rows.Count; j++)
-                    {
+                    for (int j = 0; j < dgv.Rows.Count; j++) {
                         string columnValue = "";
-                        for (int k = 0; k < dgv.Columns.Count; k++)
-                        {
-                            if (k > 0)
-                            {
+                        for (int k = 0; k < dgv.Columns.Count; k++) {
+                            if (k > 0) {
                                 columnValue += "/t";
                             }
                             if (dgv.Rows[j].Cells[k].Value == null)
@@ -386,12 +332,10 @@ namespace Air
                     sw.Close();
                     myStream.Close();
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     MessageBox.Show(e.ToString());
                 }
-                finally
-                {
+                finally {
                     sw.Close();
                     myStream.Close();
                 }
@@ -409,8 +353,7 @@ namespace Air
         /// using System.Reflection;
         /// </remarks>
         /// <param name= "dgv"> DataGridView </param> 
-        public void DataGridViewToExcel3(DataGridView dgv)
-        {
+        public void DataGridViewToExcel3(DataGridView dgv) {
 
 
             #region   验证可操作性
@@ -428,49 +371,41 @@ namespace Air
             //返回文件路径 
             string fileNameString = dlg.FileName;
             //验证strFileName是否为空或值无效 
-            if (fileNameString.Trim() == " ")
-            { return; }
+            if (fileNameString.Trim() == " ") { return; }
             //定义表格内数据的行数和列数 
             int rowscount = dgv.Rows.Count;
             int colscount = dgv.Columns.Count;
             //行数必须大于0 
-            if (rowscount <= 0)
-            {
+            if (rowscount <= 0) {
                 MessageBox.Show("没有数据可供保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //列数必须大于0 
-            if (colscount <= 0)
-            {
+            if (colscount <= 0) {
                 MessageBox.Show("没有数据可供保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //行数不可以大于65536 
-            if (rowscount > 65536)
-            {
+            if (rowscount > 65536) {
                 MessageBox.Show("数据记录数太多(最多不能超过65536条)，不能保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //列数不可以大于255 
-            if (colscount > 255)
-            {
+            if (colscount > 255) {
                 MessageBox.Show("数据记录行数太多，不能保存 ", "提示 ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             //验证以fileNameString命名的文件是否存在，如果存在删除它 
             FileInfo file = new FileInfo(fileNameString);
-            if (file.Exists)
-            {
-                try
-                {
+            if (file.Exists) {
+                try {
                     file.Delete();
                 }
-                catch (Exception error)
-                {
+                catch (Exception error) {
                     MessageBox.Show(error.Message, "删除失败 ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -479,8 +414,7 @@ namespace Air
             Excel.Application objExcel = null;
             Excel.Workbook objWorkbook = null;
             Excel.Worksheet objsheet = null;
-            try
-            {
+            try {
                 //申明对象 
                 objExcel = new Microsoft.Office.Interop.Excel.Application();
                 objWorkbook = objExcel.Workbooks.Add(Missing.Value);
@@ -490,10 +424,8 @@ namespace Air
 
                 //向Excel中写入表格的表头 
                 int displayColumnsCount = 1;
-                for (int i = 0; i <= dgv.ColumnCount - 1; i++)
-                {
-                    if (dgv.Columns[i].Visible == true)
-                    {
+                for (int i = 0; i <= dgv.ColumnCount - 1; i++) {
+                    if (dgv.Columns[i].Visible == true) {
                         objExcel.Cells[1, displayColumnsCount] = dgv.Columns[i].HeaderText.Trim();
                         displayColumnsCount++;
                     }
@@ -505,22 +437,17 @@ namespace Air
                 //tempProgressBar.Maximum=dgv.RowCount; 
                 //tempProgressBar.Step=1; 
                 //向Excel中逐行逐列写入表格中的数据 
-                for (int row = 0; row <= dgv.RowCount - 1; row++)
-                {
+                for (int row = 0; row <= dgv.RowCount - 1; row++) {
                     //tempProgressBar.PerformStep(); 
 
                     displayColumnsCount = 1;
-                    for (int col = 0; col < colscount; col++)
-                    {
-                        if (dgv.Columns[col].Visible == true)
-                        {
-                            try
-                            {
+                    for (int col = 0; col < colscount; col++) {
+                        if (dgv.Columns[col].Visible == true) {
+                            try {
                                 objExcel.Cells[row + 2, displayColumnsCount] = dgv.Rows[row].Cells[col].Value.ToString().Trim();
                                 displayColumnsCount++;
                             }
-                            catch (Exception)
-                            {
+                            catch (Exception) {
 
                             }
 
@@ -534,13 +461,11 @@ namespace Air
                         Missing.Value, Excel.XlSaveAsAccessMode.xlShared, Missing.Value, Missing.Value, Missing.Value,
                         Missing.Value, Missing.Value);
             }
-            catch (Exception error)
-            {
+            catch (Exception error) {
                 MessageBox.Show(error.Message, "警告 ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            finally
-            {
+            finally {
                 //关闭Excel应用 
                 if (objWorkbook != null) objWorkbook.Close(Missing.Value, Missing.Value, Missing.Value);
                 if (objExcel.Workbooks != null) objExcel.Workbooks.Close();

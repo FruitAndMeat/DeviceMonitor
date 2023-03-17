@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace iniFileFrm
 {
@@ -42,8 +39,7 @@ namespace iniFileFrm
         /// <param name="def">未取到值时返回的默认值</param>
         /// <param name="filePath">INI文件完整路径</param>
         /// <returns>读取的值</returns>
-        public static string Read(string section, string key, string def, string filePath)
-        {
+        public static string Read(string section, string key, string def, string filePath) {
             StringBuilder sb = new StringBuilder(1024);
             GetPrivateProfileString(section, key, def, sb, 1024, filePath);
             return sb.ToString();
@@ -57,8 +53,7 @@ namespace iniFileFrm
         /// <param name="value">要写入的新字符串</param>
         /// <param name="filePath">INI文件完整路径</param>
         /// <returns>非零表示成功，零表示失败</returns>
-        public static int Write(string section, string key, string value, string filePath)
-        {
+        public static int Write(string section, string key, string value, string filePath) {
             CheckPath(filePath);
             return WritePrivateProfileString(section, key, value, filePath);
         }
@@ -69,8 +64,7 @@ namespace iniFileFrm
         /// <param name="section">节点名</param>
         /// <param name="filePath">INI文件完整路径</param>
         /// <returns>非零表示成功，零表示失败</returns>
-        public static int DeleteSection(string section, string filePath)
-        {
+        public static int DeleteSection(string section, string filePath) {
             return Write(section, null, null, filePath);
         }
 
@@ -81,13 +75,11 @@ namespace iniFileFrm
         /// <param name="key">键名</param>
         /// <param name="filePath">INI文件完整路径</param>
         /// <returns>非零表示成功，零表示失败</returns>
-        public static int DeleteKey(string section, string key, string filePath)
-        {
+        public static int DeleteKey(string section, string key, string filePath) {
             return Write(section, key, null, filePath);
         }
 
-        private static void CheckPath(string path)
-        {
+        private static void CheckPath(string path) {
             string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "sys.ini");//在当前程序路径创建
             File.Create(filePath);//创建INI文件
         }

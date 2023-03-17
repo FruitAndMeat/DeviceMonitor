@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Models
 {
     [Serializable]
-    [XmlRoot(ElementName ="Variable")]
+    [XmlRoot(ElementName = "Variable")]
     public class Variables
     {
         /// <summary>
-       /// 变量名称
+        /// 变量名称
         /// </summary>
-        [XmlElement(ElementName ="VarName")]
+        [XmlElement(ElementName = "VarName")]
         public string VarName { get; set; }
         /// <summary>
         /// 存储区域
@@ -56,13 +52,10 @@ namespace Models
         /// </summary>
         [XmlElement(ElementName = "AbsoluteAddress")]
         private string absoluteAddress;
-        public string AbsoluteAddress
-        {
-            get
-            {
+        public string AbsoluteAddress {
+            get {
                 int store = 0;
-                switch (storeArea)
-                {
+                switch (storeArea) {
                     case RegisterType.CoilStatus: store = 0; break;
                     case RegisterType.InputStatus: store = 1; break;
                     case RegisterType.HoldingRegister: store = 4; break;
@@ -71,8 +64,7 @@ namespace Models
                 }
                 return (store * 10000 + Address).ToString();
             }
-            set
-            {
+            set {
                 value = absoluteAddress;
             }
         }

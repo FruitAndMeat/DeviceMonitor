@@ -1,72 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Models;
 using Sunny.UI;
-using DAL;
-using Models;
+using System;
+using System.Windows.Forms;
 
 namespace Air
 {
     public partial class FrmNewVariable : UIForm
     {
-        public FrmNewVariable()
-        {
+        public FrmNewVariable() {
             InitializeComponent();
             Initial();
         }
         public Variables variable = null;
         public VarAlarm varAlarm = null;
-        
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
+
+        private void btnConfirm_Click(object sender, EventArgs e) {
             #region 变量数据验证
-            if (this.txtVarName.Text.Length==0)
-            {
+            if (this.txtVarName.Text.Length == 0) {
                 UIMessageBox.ShowWarning("请输入变量名称！");
                 this.txtVarName.Focus();
                 return;
             }
             #endregion
             #region 验证报警设置并封装报警对象
-            if (this.cbxVarAlarm.Checked)
-            {
+            if (this.cbxVarAlarm.Checked) {
                 #region 验证报警设置
                 if (!(this.cbxAlarmLoLo.Checked || this.cbxAlarmLow.Checked ||
-                    this.cbxAlarmHigh.Checked || this.cbxAlarmHiHi.Checked))
-                {
+                    this.cbxAlarmHigh.Checked || this.cbxAlarmHiHi.Checked)) {
                     UIMessageBox.ShowWarning("选择了报警，未填写具体报警内容");
                     return;
                 }
 
-                if (this.cbxAlarmLoLo.Checked && this.txtAlarmLoLo.Text.Length == 0)
-                {
+                if (this.cbxAlarmLoLo.Checked && this.txtAlarmLoLo.Text.Length == 0) {
                     UIMessageBox.ShowWarning("请输入报警值！");
                     this.txtAlarmLoLo.Focus();
                     return;
                 }
-                
-                if (this.cbxAlarmLow.Checked && this.txtAlarmLow.Text.Length == 0)
-                {
+
+                if (this.cbxAlarmLow.Checked && this.txtAlarmLow.Text.Length == 0) {
                     UIMessageBox.ShowWarning("请输入报警值！");
                     this.txtAlarmLow.Focus();
                     return;
                 }
-                
-                if (this.cbxAlarmHigh.Checked && this.txtAlarmHigh.Text.Length == 0)
-                {
+
+                if (this.cbxAlarmHigh.Checked && this.txtAlarmHigh.Text.Length == 0) {
                     UIMessageBox.ShowWarning("请输入报警值！");
                     this.txtAlarmHigh.Focus();
                     return;
                 }
-                
-                if (this.cbxAlarmHiHi.Checked && this.txtAlarmHiHi.Text.Length == 0)
-                {
+
+                if (this.cbxAlarmHiHi.Checked && this.txtAlarmHiHi.Text.Length == 0) {
                     UIMessageBox.ShowWarning("请输入报警值！");
                     this.txtAlarmHiHi.Focus();
                     return;
@@ -76,12 +59,10 @@ namespace Air
                 #region 封装报警
 
 
-                varAlarm = new VarAlarm() { VarName=txtVarName.Text};
+                varAlarm = new VarAlarm() { VarName = txtVarName.Text };
 
-                if (this.cbxAlarmLoLo.Checked)
-                {
-                    varAlarm.listAlarm.Add(new Alarm()
-                    {
+                if (this.cbxAlarmLoLo.Checked) {
+                    varAlarm.listAlarm.Add(new Alarm() {
                         alarmType = AlarmType.LoLo,
                         priority = Convert.ToInt32(this.txtPriorityLoLo.Text),
                         alarmLimitValue = float.Parse(this.txtAlarmLoLo.Text),
@@ -89,10 +70,8 @@ namespace Air
                     });
                 }
 
-                if (this.cbxAlarmLow.Checked)
-                {
-                    varAlarm.listAlarm.Add(new Alarm()
-                    {
+                if (this.cbxAlarmLow.Checked) {
+                    varAlarm.listAlarm.Add(new Alarm() {
                         alarmType = AlarmType.Low,
                         priority = Convert.ToInt32(this.txtPriorityLow.Text),
                         alarmLimitValue = float.Parse(this.txtAlarmLow.Text),
@@ -100,10 +79,8 @@ namespace Air
                     });
                 }
 
-                if (this.cbxAlarmHigh.Checked)
-                {
-                    varAlarm.listAlarm.Add(new Alarm()
-                    {
+                if (this.cbxAlarmHigh.Checked) {
+                    varAlarm.listAlarm.Add(new Alarm() {
                         alarmType = AlarmType.High,
                         priority = Convert.ToInt32(this.txtPriorityHigh.Text),
                         alarmLimitValue = float.Parse(this.txtAlarmHigh.Text),
@@ -111,10 +88,8 @@ namespace Air
                     });
                 }
 
-                if (this.cbxAlarmHiHi.Checked)
-                {
-                    varAlarm.listAlarm.Add(new Alarm()
-                    {
+                if (this.cbxAlarmHiHi.Checked) {
+                    varAlarm.listAlarm.Add(new Alarm() {
                         alarmType = AlarmType.HiHi,
                         priority = Convert.ToInt32(this.txtPriorityHiHi.Text),
                         alarmLimitValue = float.Parse(this.txtAlarmHiHi.Text),
@@ -126,8 +101,7 @@ namespace Air
             }
             #endregion
 
-            variable = new Variables()
-            {
+            variable = new Variables() {
                 VarName = this.txtVarName.Text,
                 storeArea = (RegisterType)Enum.Parse(typeof(RegisterType), this.cmbStoreArea.Text),
                 Address = Convert.ToInt32(this.txtVarAddress.Text),
@@ -135,57 +109,49 @@ namespace Air
                 IsFilling = this.cbxFilling.Checked ? "Y" : "N",
                 IsAlarm = this.cbxVarAlarm.Checked ? "Y" : "N",
                 IsReport = this.cbxReport.Checked ? "Y" : "N",
-                Note=this.txtVarNote.Text
+                Note = this.txtVarNote.Text
             };
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+        private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
-        private void Initial()
-        {
+        private void Initial() {
             //初始化存储区域下拉框
             this.cmbStoreArea.DataSource = Enum.GetNames(typeof(RegisterType));
             //初始化数据类型下拉框
             this.cmbDataType.DataSource = Enum.GetNames(typeof(PLCDataType));
         }
         #region CheckBox使能变化
-        private void cbxAlarmLoLo_CheckedChanged(object sender, EventArgs e)
-        {
+        private void cbxAlarmLoLo_CheckedChanged(object sender, EventArgs e) {
             this.txtAlarmLoLo.Enabled = ((UICheckBox)sender).Checked;
             this.txtPriorityLoLo.Enabled = ((UICheckBox)sender).Checked;
             this.txtNoteLoLo.Enabled = ((UICheckBox)sender).Checked;
         }
 
-        private void cbxAlarmLow_CheckedChanged(object sender, EventArgs e)
-        {
+        private void cbxAlarmLow_CheckedChanged(object sender, EventArgs e) {
             this.txtAlarmLow.Enabled = ((UICheckBox)sender).Checked;
             this.txtPriorityLow.Enabled = ((UICheckBox)sender).Checked;
             this.txtNoteLow.Enabled = ((UICheckBox)sender).Checked;
         }
 
-        private void cbxAlarmHigh_CheckedChanged(object sender, EventArgs e)
-        {
+        private void cbxAlarmHigh_CheckedChanged(object sender, EventArgs e) {
             this.txtAlarmHigh.Enabled = ((UICheckBox)sender).Checked;
             this.txtPriorityHigh.Enabled = ((UICheckBox)sender).Checked;
             this.txtNoteHigh.Enabled = ((UICheckBox)sender).Checked;
         }
 
-        private void cbxAlarmHiHi_CheckedChanged(object sender, EventArgs e)
-        {
+        private void cbxAlarmHiHi_CheckedChanged(object sender, EventArgs e) {
             this.txtAlarmHiHi.Enabled = ((UICheckBox)sender).Checked;
             this.txtPriorityHiHi.Enabled = ((UICheckBox)sender).Checked;
             this.txtNoteHiHi.Enabled = ((UICheckBox)sender).Checked;
         }
 
-        private void cbxVarAlarm_CheckedChanged(object sender, EventArgs e)
-        {
+        private void cbxVarAlarm_CheckedChanged(object sender, EventArgs e) {
             bool value = this.cbxVarAlarm.Checked;
-            if (value==false)
-            {
+            if (value == false) {
                 this.cbxAlarmLoLo.Checked = value;
                 this.cbxAlarmLow.Checked = value;
                 this.cbxAlarmHigh.Checked = value;

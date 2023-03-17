@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Models;
 using NModbus;
-using Models;
-using System.Net.Sockets;
+using System;
 using System.Net;
+using System.Net.Sockets;
 
 namespace DAL
 {
     public class DeviceServices
     {
-        public DeviceServices(Device device)
-        {
+        public DeviceServices(Device device) {
             this.device = device;
-            try
-            {
+            try {
                 ConnectAsync();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
 
                 throw ex;
             }
@@ -38,17 +31,14 @@ namespace DAL
 
         #region 初始化连接
 
-        private async void ConnectAsync()
-        {
+        private async void ConnectAsync() {
             this.slaveAddress = Convert.ToByte(device.DeviceID);
             tcpClient = new TcpClient();
-            try
-            {
+            try {
                 await tcpClient.ConnectAsync(IPAddress.Parse(this.device.DeviceIP), this.device.IPPort);
                 master = new ModbusFactory().CreateMaster(tcpClient);
             }
-            catch (Exception ex)
-            {
+            catch (Exception) {
                 //throw ex;
             }
 
@@ -61,19 +51,15 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="length">读取长度</param>
         /// <returns>读取结果</returns>
-        public bool[] ReadCoils(ushort startAddress, ushort length)
-        {
+        public bool[] ReadCoils(ushort startAddress, ushort length) {
             bool[] bools = null;
-            try
-            {
-                if (master != null)
-                {
+            try {
+                if (master != null) {
                     bools = master.ReadCoils(slaveAddress, Convert.ToUInt16(startAddress - 1), length);
                 }
                 return bools;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行读取离散输出线圈失败：" + ex.Message);
                 throw ex;
             }
@@ -83,19 +69,15 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="length">读取长度</param>
         /// <returns>读取结果</returns>
-        public ushort[] ReadHoldingRegisters(ushort startAddress, ushort length)
-        {
+        public ushort[] ReadHoldingRegisters(ushort startAddress, ushort length) {
             ushort[] ushorts = null;
-            try
-            {
-                if (master != null)
-                {
+            try {
+                if (master != null) {
                     ushorts = master.ReadHoldingRegisters(slaveAddress, Convert.ToUInt16(startAddress - 1), length);
                 }
                 return ushorts;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行读取保持性寄存器失败：" + ex.Message);
                 throw ex;
             }
@@ -105,14 +87,11 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="datas">寄存器值集合</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public void WriteMultiCoils(ushort startAddress, bool[] datas)
-        {
-            try
-            {
+        public void WriteMultiCoils(ushort startAddress, bool[] datas) {
+            try {
                 master.WriteMultipleCoils(slaveAddress, Convert.ToUInt16(startAddress - 1), datas);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行写入多个线圈失败：" + ex.Message);
                 throw ex;
             }
@@ -121,14 +100,11 @@ namespace DAL
         /// <param name="startAddress">开始地址</param>
         /// <param name="datas">数据数组</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public void WriteMultipleRegisters(ushort startAddress, ushort[] datas)
-        {
-            try
-            {
+        public void WriteMultipleRegisters(ushort startAddress, ushort[] datas) {
+            try {
                 master.WriteMultipleRegisters(slaveAddress, Convert.ToUInt16(startAddress - 1), datas);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行写入多个寄存器失败：" + ex.Message);
                 throw ex;
             }
@@ -138,14 +114,11 @@ namespace DAL
         /// <param name="coilAddress">线圈地址</param>
         /// <param name="value">线圈值</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public void WriteSingleCoil(ushort coilAddress, bool value)
-        {
-            try
-            {
+        public void WriteSingleCoil(ushort coilAddress, bool value) {
+            try {
                 master.WriteSingleCoil(slaveAddress, Convert.ToUInt16(coilAddress - 1), value);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行写入单个线圈失败：" + ex.Message);
                 throw ex;
             }
@@ -155,14 +128,11 @@ namespace DAL
         /// <param name="registerAddress">寄存器地址</param>
         /// <param name="value">寄存器值</param>
         /// <returns>写入结果，成功则为True,反之为false。</returns>
-        public void WriteSingleRegister(ushort registerAddress, ushort value)
-        {
-            try
-            {
+        public void WriteSingleRegister(ushort registerAddress, ushort value) {
+            try {
                 master.WriteSingleRegister(slaveAddress, Convert.ToUInt16(registerAddress - 1), value);
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 LogHelper.WriteLog("执行写入单个寄存器失败：" + ex.Message);
                 throw ex;
             }

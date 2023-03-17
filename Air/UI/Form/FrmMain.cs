@@ -1,99 +1,78 @@
-﻿using System;
+﻿using DAL;
+using Models;
+using Sunny.UI;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sunny.UI;
-using DAL;
-using Models;
 
 
 namespace Air
 {
     public partial class FrmMain : UIForm
     {
-        public FrmMain()
-        {
+        public FrmMain() {
             InitializeComponent();
-            
+
         }
         //实例化一个通讯线程（实际应该一个device就实例化一个通讯线程）
         CommonThread objComm = new CommonThread();
         AlarmRecordServices objAlarmRS = new AlarmRecordServices();
 
         #region 事件
-        private void btnIOMonitor_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmIOMonitor")==false)
-            {
+        private void btnIOMonitor_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmIOMonitor") == false) {
                 OpenWindow(new FrmIOMonitor());
             }
             //((UIButton)sender).Enabled = false;
             SetEnable(sender);
         }
 
-        private void btnParamSet_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmParamSet") == false)
-            {
+        private void btnParamSet_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmParamSet") == false) {
                 OpenWindow(new FrmParamSet());
             }
             SetEnable(sender);
         }
 
-        private void btnAlarmView_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmAlarmView") == false)
-            {
+        private void btnAlarmView_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmAlarmView") == false) {
                 OpenWindow(new FrmAlarmView());
             }
             SetEnable(sender);
         }
 
-        private void btnTrendView_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmTrendView") == false)
-            {
+        private void btnTrendView_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmTrendView") == false) {
                 OpenWindow(new FrmTrendView());
             }
             SetEnable(sender);
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmReport") == false)
-            {
+        private void btnReport_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmReport") == false) {
                 OpenWindow(new FrmReport());
             }
             SetEnable(sender);
         }
 
-        private void btnHardwareConfig_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmHardwareConfig") == false)
-            {
+        private void btnHardwareConfig_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmHardwareConfig") == false) {
                 OpenWindow(new FrmHardwareConfig());
             }
             SetEnable(sender);
         }
 
-        private void btnAbout_Click(object sender, EventArgs e)
-        {
-            if (CloseWindow("FrmAbout") == false)
-            {
+        private void btnAbout_Click(object sender, EventArgs e) {
+            if (CloseWindow("FrmAbout") == false) {
                 OpenWindow(new FrmAbout());
             }
             SetEnable(sender);
         }
 
-        
+
         //主窗体加载事件
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
+        private void FrmMain_Load(object sender, EventArgs e) {
             //初始化
             this.lblTime.Text = DateTime.Now.ToString();
             this.lblUser.Text = CommonData.SysAdmin?.LoginName;
@@ -102,21 +81,19 @@ namespace Air
             InitialList();
 
             //打开通讯要在初始化之后(否则，commondata里的objDevice无信息)
-            try
-            {
+            try {
                 CommonData.objMod = new DeviceServices(CommonData.objDevice);
                 CommonData.CommOk = true;
                 //一秒扫描一次，内部一分钟保存一次
                 InsertData insertData = new InsertData(1000);
                 objComm.t.Start();
             }
-            catch(Exception ex)
-            { CommonData.CommOk = false;
+            catch (Exception ex) {
+                CommonData.CommOk = false;
                 UIMessageBox.ShowError(ex.Message);
             }
 
-            if (CloseWindow("FrmIOMonitor") == false)
-            {
+            if (CloseWindow("FrmIOMonitor") == false) {
                 OpenWindow(new FrmIOMonitor());
             }
             SetEnable(this.btnIOMonitor);
@@ -125,8 +102,7 @@ namespace Air
             Task.Run(new Action(CheckAlarm));
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
+        private void timer1_Tick(object sender, EventArgs e) {
             this.lblTime.Text = DateTime.Now.ToString();
         }
         #endregion
@@ -136,10 +112,9 @@ namespace Air
         /// 打开窗口方法
         /// </summary>
         /// <param name="frm">要打开的窗口对象</param>
-        private void OpenWindow(UIForm frm)
-        {
+        private void OpenWindow(UIForm frm) {
             frm.TopLevel = false;
-            
+
             frm.Dock = DockStyle.Fill;
             frm.Parent = this.mainPanel;
             frm.Show();
@@ -150,19 +125,14 @@ namespace Air
         /// </summary>
         /// <param name="frmName">要检查的关闭窗口名字</param>
         /// <returns>如果当前打开的窗体就是需要打开的窗体，则返回True,并不关闭窗口。否则关闭窗口并返回false</returns>
-        private bool CloseWindow(string frmName)
-        {
-            foreach (Control ct in this.mainPanel.Controls)
-            {
-                if (ct is UIForm)
-                {
+        private bool CloseWindow(string frmName) {
+            foreach (Control ct in this.mainPanel.Controls) {
+                if (ct is UIForm) {
                     UIForm frm = (UIForm)ct;
-                    if (frm.Name==frmName)
-                    {
+                    if (frm.Name == frmName) {
                         return true;
                     }
-                    else
-                    {
+                    else {
                         frm.Close();
                     }
                 }
@@ -173,12 +143,9 @@ namespace Air
         /// 根据点击的按钮对象设置按钮的使能条件，并且更改标题文字。
         /// </summary>
         /// <param name="sender">点击的按钮控件</param>
-        private void SetEnable(object sender)
-        {
-            foreach (Control ct in this.BtnPanel.Controls)
-            {
-                if (ct is UIButton)
-                {
+        private void SetEnable(object sender) {
+            foreach (Control ct in this.BtnPanel.Controls) {
+                if (ct is UIButton) {
                     UIButton btn = (UIButton)ct;
                     btn.Enabled = true;
                 }
@@ -188,10 +155,8 @@ namespace Air
         }
 
         //加载窗体时初始化。
-        private void InitialList()
-        {
-            try
-            {
+        private void InitialList() {
+            try {
                 //1、从ini文件读取配置并保存到全局
                 CommonData.objDevice = CommonMethod.LoadDevice(CommonData.deviceSetPath);
                 //2、从xml文件读取变量信息。
@@ -199,15 +164,12 @@ namespace Air
                 CommonData.varAlarmList = CommonMethod.ReadXmlToList<List<VarAlarm>>(CommonData.varAlarmPath);
                 CommonData.storeAreaList = CommonMethod.ReadXmlToList<List<StoreArea>>(CommonData.storeAreaPath);
                 //3、填充报表、归档集合
-                foreach (Variables item in CommonData.variableList)
-                {
-                    if (!CommonData.CurrentValue.ContainsKey(item.VarName))
-                    {
+                foreach (Variables item in CommonData.variableList) {
+                    if (!CommonData.CurrentValue.ContainsKey(item.VarName)) {
                         CommonData.CurrentValue.Add(item.VarName, "");
                         CommonData.CurrentAddress.Add(item.VarName, item.Address.ToString());
                     }
-                    switch (item.storeArea)
-                    {
+                    switch (item.storeArea) {
                         case RegisterType.CoilStatus:
                             objComm.List_0x.Add(item);
                             break;
@@ -221,60 +183,40 @@ namespace Air
                             objComm.List_3x.Add(item);
                             break;
                     }
-                    if (item.IsFilling == "Y")
-                    {
+                    if (item.IsFilling == "Y") {
                         //后续添加报表所要使用的集合
                         CommonData.fileVarList.Add(item);
                     }
-                    if (item.IsReport == "Y")
-                    {
+                    if (item.IsReport == "Y") {
                         CommonData.reportVarList.Add(item);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                UIMessageBox.ShowError("初始化失败:"+ex.Message);
+            catch (Exception ex) {
+                UIMessageBox.ShowError("初始化失败:" + ex.Message);
             }
-            
+
         }
 
-                
+
         #region 初始化报警
         /// <summary>变量缓存值</summary>
         private Dictionary<string, float> LastValue = new Dictionary<string, float>();
-        private void InitialAlarm()
-        {
-            foreach (VarAlarm item in CommonData.varAlarmList)
-            {
+        private void InitialAlarm() {
+            foreach (VarAlarm item in CommonData.varAlarmList) {
                 //填充LastValue字典
                 //如果字典里没有这个变量，且实时值集合中有这个变量的值,则将实时值转换成浮点数并添加到字典里
-                if (!LastValue.ContainsKey(item.VarName)&&CommonData.CurrentValue[item.VarName].Length>0)
-                {
+                if (!LastValue.ContainsKey(item.VarName) && CommonData.CurrentValue[item.VarName].Length > 0) {
                     string value = CommonData.CurrentValue[item.VarName];
                     float floatValue = 0.00F;
                     float.TryParse(value, out floatValue);
                     LastValue.Add(item.VarName, floatValue);
-                
-                foreach (Alarm it in item.listAlarm)
-                {
-                    switch (it.alarmType)
-                    {
-                        case AlarmType.LoLo:
-                        case AlarmType.Low:
-                            if (floatValue<it.alarmLimitValue)
-                            {
-                                    AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                        item.VarName,AlarmState.Incoming,it.alarmType,floatValue,it.alarmLimitValue,
-                                        it.priority,it.alarmNote);
-                                    objAlarmRS.InsertAlarmData(temp);
-                                    NewAlarmHandle(temp);
-                            }
-                            break;
-                        case AlarmType.High:
-                        case AlarmType.HiHi:
-                                if (floatValue > it.alarmLimitValue)
-                                {
+
+                    foreach (Alarm it in item.listAlarm) {
+                        switch (it.alarmType) {
+                            case AlarmType.LoLo:
+                            case AlarmType.Low:
+                                if (floatValue < it.alarmLimitValue) {
                                     AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                         item.VarName, AlarmState.Incoming, it.alarmType, floatValue, it.alarmLimitValue,
                                         it.priority, it.alarmNote);
@@ -282,8 +224,18 @@ namespace Air
                                     NewAlarmHandle(temp);
                                 }
                                 break;
+                            case AlarmType.High:
+                            case AlarmType.HiHi:
+                                if (floatValue > it.alarmLimitValue) {
+                                    AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                        item.VarName, AlarmState.Incoming, it.alarmType, floatValue, it.alarmLimitValue,
+                                        it.priority, it.alarmNote);
+                                    objAlarmRS.InsertAlarmData(temp);
+                                    NewAlarmHandle(temp);
+                                }
+                                break;
+                        }
                     }
-                }
                 }
             }
         }
@@ -291,33 +243,25 @@ namespace Air
         #endregion
 
         #region 实时检查报警
-        private void CheckAlarm()
-        {
-            while (true)
-            {
-                if (CommonData.CommOk&&LastValue.Count>0)
-                {
-                    foreach (VarAlarm item in CommonData.varAlarmList)
-                    {
+        private void CheckAlarm() {
+            while (true) {
+                if (CommonData.CommOk && LastValue.Count > 0) {
+                    foreach (VarAlarm item in CommonData.varAlarmList) {
                         float storeValue = LastValue[item.VarName];
-                        float actualValue =float.Parse( CommonData.CurrentValue[item.VarName]);
-                        foreach (Alarm it in item.listAlarm)
-                        {
+                        float actualValue = float.Parse(CommonData.CurrentValue[item.VarName]);
+                        foreach (Alarm it in item.listAlarm) {
                             float alarmLimitValue = it.alarmLimitValue;
-                            switch (it.alarmType)
-                            {
+                            switch (it.alarmType) {
                                 case AlarmType.LoLo:
                                 case AlarmType.Low:
-                                    if (storeValue<alarmLimitValue&&actualValue>alarmLimitValue)
-                                    {
+                                    if (storeValue < alarmLimitValue && actualValue > alarmLimitValue) {
                                         AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                          item.VarName, AlarmState.Outgoing, it.alarmType, actualValue, it.alarmLimitValue,
                                          it.priority, it.alarmNote);
                                         objAlarmRS.InsertAlarmData(temp);
                                         NewAlarmHandle(temp);
                                     }
-                                    if (storeValue > alarmLimitValue && actualValue <= alarmLimitValue)
-                                    {
+                                    if (storeValue > alarmLimitValue && actualValue <= alarmLimitValue) {
                                         AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                          item.VarName, AlarmState.Incoming, it.alarmType, actualValue, it.alarmLimitValue,
                                          it.priority, it.alarmNote);
@@ -327,16 +271,14 @@ namespace Air
                                     break;
                                 case AlarmType.High:
                                 case AlarmType.HiHi:
-                                    if (storeValue > alarmLimitValue && actualValue <= alarmLimitValue)
-                                    {
+                                    if (storeValue > alarmLimitValue && actualValue <= alarmLimitValue) {
                                         AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                          item.VarName, AlarmState.Outgoing, it.alarmType, actualValue, it.alarmLimitValue,
                                          it.priority, it.alarmNote);
                                         objAlarmRS.InsertAlarmData(temp);
                                         NewAlarmHandle(temp);
                                     }
-                                    if (storeValue < alarmLimitValue && actualValue > alarmLimitValue)
-                                    {
+                                    if (storeValue < alarmLimitValue && actualValue > alarmLimitValue) {
                                         AlarmRecord temp = new AlarmRecord(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                          item.VarName, AlarmState.Incoming, it.alarmType, actualValue, it.alarmLimitValue,
                                          it.priority, it.alarmNote);
@@ -347,8 +289,7 @@ namespace Air
                             }
                         }
                         //更新LastValue
-                        if (LastValue.ContainsKey(item.VarName))
-                        {
+                        if (LastValue.ContainsKey(item.VarName)) {
                             LastValue[item.VarName] = actualValue;
                         }
                     }
@@ -359,17 +300,15 @@ namespace Air
 
         #endregion
 
-        private void NewAlarmHandle(AlarmRecord alarmRecord)
-        {
-            if (CommonData.alarmRecordList.Count >= CommonData.alarmRecordMax)
-            {
+        private void NewAlarmHandle(AlarmRecord alarmRecord) {
+            if (CommonData.alarmRecordList.Count >= CommonData.alarmRecordMax) {
                 CommonData.alarmRecordList.RemoveAt(0);
             }
             CommonData.alarmRecordList.Add(alarmRecord);
             CommonData.UpdateAlarm();
         }
 
-        
+
         #endregion
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
@@ -39,8 +35,7 @@ namespace Models
         public string alarmNote { get; set; }
 
 
-        public AlarmRecord(string alarmDate,string varName,AlarmState alarmState,AlarmType alarmType,float actualValue,float alarmValue,int priority,string alarmNote)
-        {
+        public AlarmRecord(string alarmDate, string varName, AlarmState alarmState, AlarmType alarmType, float actualValue, float alarmValue, int priority, string alarmNote) {
             this.alarmDate = Convert.ToDateTime(alarmDate);
             this.varName = varName;
             this.alarmState = alarmState;
@@ -50,6 +45,6 @@ namespace Models
             this.priority = priority;
             this.alarmNote = alarmNote;
         }
-       
+
     }
 }

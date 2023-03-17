@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-
+﻿//using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Air
@@ -17,8 +13,7 @@ namespace Air
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public static bool IsInteger(string txt)
-        {
+        public static bool IsInteger(string txt) {
             Regex objReg = new Regex(@"^[1-9]\d*$");
             return objReg.IsMatch(txt);
         }
@@ -27,8 +22,7 @@ namespace Air
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public static bool IsEmail(string txt)
-        {
+        public static bool IsEmail(string txt) {
             Regex objReg = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
             return objReg.IsMatch(txt);
         }
@@ -37,8 +31,7 @@ namespace Air
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public static bool IsIdentityCard(string txt)
-        {
+        public static bool IsIdentityCard(string txt) {
             Regex objReg = new Regex(@"^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$");
             return objReg.IsMatch(txt);
         }

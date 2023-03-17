@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Air
@@ -12,17 +9,14 @@ namespace Air
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
-        {
+        static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DialogResult result = new FrmLogin().ShowDialog();
-            if (result == DialogResult.OK)
-            {
+            if (result == DialogResult.OK) {
                 Application.Run(new FrmMain());
             }
-            else
-            {
+            else {
                 Application.Exit();
             }
         }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEquipment.cs" />
     <Compile Include="DataBase\Admins.cs" />
     <Compile Include="DataBase\Alarm.cs" />
     <Compile Include="DataBase\AlarmRecord.cs" />

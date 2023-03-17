@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL;
+﻿using DAL;
 using Models;
+using System;
+using System.Collections.Generic;
 
 namespace Air
 {
@@ -25,7 +22,7 @@ namespace Air
 
         #region 相关配置文件路径
 
-        
+
         /// <summary>
         /// 设备配置文件路径
         /// </summary>
@@ -83,10 +80,10 @@ namespace Air
         public const int RecordCount = 60;
 
         #endregion
-        
+
 
         /// <summary>线程专用数据写入的标志位</summary>
-       // public static bool IsWriteing=false;
+        // public static bool IsWriteing=false;
         /// <summary>通讯状态标志位</summary>
         public static bool CommOk = false;
 
@@ -96,10 +93,8 @@ namespace Air
         /// <summary>刷新报警的事件</summary>
         public static event UpdateAlarmDelegate update;
 
-        public static void UpdateAlarm()
-        {
-            if (update!=null)
-            {
+        public static void UpdateAlarm() {
+            if (update != null) {
                 update.Invoke();
             }
         }

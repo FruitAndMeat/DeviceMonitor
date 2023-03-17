@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Models;
 using Sunny.UI;
-using Models;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Air
 {
     public partial class FrmQuerySelect : UIForm
     {
-        public FrmQuerySelect()
-        {
+        public FrmQuerySelect() {
             InitializeComponent();
             this.Load += FrmQuerySelect_Load;
         }
@@ -25,12 +18,9 @@ namespace Air
 
         #region 自定义方法
 
-        private void AddVarByArea(string areaName)
-        {
-            foreach (Variables item in CommonData.fileVarList)
-            {
-                if (item.VarName.Contains(areaName))
-                {
+        private void AddVarByArea(string areaName) {
+            foreach (Variables item in CommonData.fileVarList) {
+                if (item.VarName.Contains(areaName)) {
                     SelectedList.Add(item.VarName);
                 }
             }
@@ -38,31 +28,25 @@ namespace Air
 
         #endregion
 
-        private void FrmQuerySelect_Load(object sender, EventArgs e)
-        {
+        private void FrmQuerySelect_Load(object sender, EventArgs e) {
             this.cmbAreaSelect.Items.AddRange(new string[] { "1#电机组", "2#电机组" });
             this.cmbAreaSelect.SelectedIndex = 0;
             this.rdoSelectByArea.Checked = true;
             this.tsSelectControl.Enabled = false;
 
-            foreach (Variables item in CommonData.reportVarList)
-            {
+            foreach (Variables item in CommonData.reportVarList) {
                 this.tsSelectControl.ItemsLeft.Add(item.VarName);
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+        private void btnCancel_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void btnSure_Click(object sender, EventArgs e)
-        {
+        private void btnSure_Click(object sender, EventArgs e) {
             SelectedList.Clear();
-            if (rdoSelectByArea.Checked)
-            {
-                switch (cmbAreaSelect.Text)
-                {
+            if (rdoSelectByArea.Checked) {
+                switch (cmbAreaSelect.Text) {
                     case "1#电机组":
                         AddVarByArea("1#电机");
                         break;
@@ -71,14 +55,10 @@ namespace Air
                         break;
                 }
             }
-            else if (rdoSelectFree.Checked)
-            {
-                foreach (string varName in tsSelectControl.ItemsRight)
-                {
-                    foreach (Variables item in CommonData.reportVarList)
-                    {
-                        if (item.VarName==varName)
-                        {
+            else if (rdoSelectFree.Checked) {
+                foreach (string varName in tsSelectControl.ItemsRight) {
+                    foreach (Variables item in CommonData.reportVarList) {
+                        if (item.VarName == varName) {
                             SelectedList.Add(item.VarName);
                             break;
                         }
@@ -89,13 +69,11 @@ namespace Air
             this.DialogResult = DialogResult.OK;
         }
 
-        private void rdoSelectFree_CheckedChanged(object sender, EventArgs e)
-        {
+        private void rdoSelectFree_CheckedChanged(object sender, EventArgs e) {
             this.tsSelectControl.Enabled = rdoSelectFree.Checked;
         }
 
-        private void rdoSelectByArea_CheckedChanged(object sender, EventArgs e)
-        {
+        private void rdoSelectByArea_CheckedChanged(object sender, EventArgs e) {
             this.cmbAreaSelect.Enabled = rdoSelectByArea.Checked;
         }
     }
